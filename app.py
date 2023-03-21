@@ -8,7 +8,7 @@ import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
 
-df = pd.read_excel('week_keyword_table_s01_2021.xlsx',index_col=0)
+df = pd.read_csv('week_keyword_table_s01_2021.csv',index_col=0)
 fig = px.scatter(df, x='lasercut', y='lasercut',
                 color='lasercut', hover_name='lasercut',
                  log_x=True, size_max=60)
