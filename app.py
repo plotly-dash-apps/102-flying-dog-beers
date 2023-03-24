@@ -8,7 +8,7 @@ import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
 
-df = pd.read_csv('week_keyword_table_s01_2021.csv',index_col=0)
+df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
 fig = px.scatter(df, x='lasercut', y='lasercut',
                 color='lasercut', hover_name='lasercut',
                  log_x=True, size_max=60)
@@ -35,43 +35,43 @@ navbar = dbc.NavbarSimple(
 className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top" ,
 )
 # Individual Weekly Graph
-div1 = html.Div([html.Iframe(src=app.get_asset_url("s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("s2_weekly_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("s3_weekly_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div2 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_weekly_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div3 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_weekly_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 
 content = html.Div(id="page-content")
-initial_html = open("/Users/chenyimin/PycharmProjects/knowledge_map/index.html", 'r').read()
-with open('s2_weekly_network1.html', 'r') as f:
+initial_html = open("assets/s1_weekly_network1.html", 'r').read()
+with open('assets/s2_weekly_network1.html', 'r') as f:
     second_html = f.read()
 
-with open('s3_weekly_network1.html', 'r') as f:
+with open('assets/s3_weekly_network1.html', 'r') as f:
     third_html = f.read()
 # Individual Aggregate Graph
-div4 = html.Div([html.Iframe(src=app.get_asset_url("s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div5 = html.Div([html.Iframe(src=app.get_asset_url("s2_aggregate_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div6 = html.Div([html.Iframe(src=app.get_asset_url("s3_aggregate_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div4 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div5 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_aggregate_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div6 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_aggregate_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 content = html.Div(id="page-content")
 # Define the initial HTML content to display in the Iframe component
-initial_html_aggregate = open('s1_aggregate_network1.html', 'r').read()
+initial_html_aggregate = open('assets/s1_aggregate_network1.html', 'r').read()
 
-with open('s2_aggregate_network1.html', 'r') as f:
+with open('assets/s2_aggregate_network1.html', 'r') as f:
     second_html_aggregate = f.read()
 
-with open('s3_aggregate_network1.html', 'r') as f:
+with open('assets/s3_aggregate_network1.html', 'r') as f:
     third_html_aggregate = f.read()
 
 # Class Collective Graph
-div7 = html.Div([html.Iframe(src=app.get_asset_url("class_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div8 = html.Div([html.Iframe(src=app.get_asset_url("class_network2.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div9 = html.Div([html.Iframe(src=app.get_asset_url("class_network3.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div7 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div8 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network2.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div9 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network3.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 content = html.Div(id="page-content")
 # Define the initial HTML content to display in the Iframe component
-initial_html_class = open('class_network1.html', 'r').read()
+initial_html_class = open('assets/class_network1.html', 'r').read()
 
-with open('class_network2.html', 'r') as f:
+with open('assets/class_network2.html', 'r') as f:
     second_html_class = f.read()
 
-with open('class_network3.html', 'r') as f:
+with open('assets/class_network3.html', 'r') as f:
     third_html_class = f.read()
 
 # Define the Sidebar
@@ -233,23 +233,23 @@ app.layout = html.Div(
 def update_output(mydropdown,myslider):
     # Define the HTML content to display based on the dropdown menu
     if mydropdown== 'optionA' and myslider == 0 :
-        return open('s1_weekly_network1.html', 'r').read()
+        return open('assets/s1_weekly_network1.html', 'r').read()
     elif mydropdown== 'optionA' and myslider == 1 :
-        return open('s1_weekly_network2.html', 'r').read()
+        return open('assets/s1_weekly_network2.html', 'r').read()
     elif mydropdown== 'optionA' and myslider == 2 :
-        return open('s1_weekly_network2.html', 'r').read()
+        return open('assets/s1_weekly_network2.html', 'r').read()
     elif mydropdown == 'optionB' and myslider == 0:
-        return open('s2_weekly_network1.html', 'r').read()
+        return open('assets/s2_weekly_network1.html', 'r').read()
     elif mydropdown== 'optionB' and myslider == 1 :
-        return open('s2_weekly_network2.html', 'r').read()
+        return open('assets/s2_weekly_network2.html', 'r').read()
     elif mydropdown== 'optionB' and myslider == 2 :
-        return open('s2_weekly_network3.html', 'r').read()
+        return open('assets/s2_weekly_network3.html', 'r').read()
     elif mydropdown == 'optionC' and myslider == 0:
-        return open('s3_weekly_network1.html', 'r').read()
+        return open('assets/s3_weekly_network1.html', 'r').read()
     elif mydropdown == 'optionC' and myslider == 1:
-        return open('s3_weekly_network2.html', 'r').read()
+        return open('assets/s3_weekly_network2.html', 'r').read()
     elif mydropdown == 'optionC' and myslider == 2:
-        return open('s3_weekly_network3.html', 'r').read()
+        return open('assets/s3_weekly_network3.html', 'r').read()
 
 
 
@@ -277,23 +277,23 @@ def update_output(mydropdown,myslider):
 def update_output(mydropdown2,myslider2):
     # Define the HTML content to display based on the dropdown menu
     if mydropdown2== 'optionA' and myslider2 == 0 :
-        return open('s1_aggregate_network1.html', 'r').read()
+        return open('assets/s1_aggregate_network1.html', 'r').read()
     elif mydropdown2== 'optionA' and myslider2 == 1 :
-        return open('s1_aggregate_network2.html', 'r').read()
+        return open('assets/s1_aggregate_network2.html', 'r').read()
     elif mydropdown2 == 'optionA' and myslider2 == 2:
-        return open('s1_aggregate_network3.html', 'r').read()
+        return open('assets/s1_aggregate_network3.html', 'r').read()
     elif mydropdown2 == 'optionB' and myslider2 == 0:
-        return open('s2_aggregate_network1.html', 'r').read()
+        return open('assets/s2_aggregate_network1.html', 'r').read()
     elif mydropdown2 == 'optionB' and myslider2 == 1:
-        return open('s2_aggregate_network2.html', 'r').read()
+        return open('assets/s2_aggregate_network2.html', 'r').read()
     elif mydropdown2 == 'optionB' and myslider2 == 2:
-        return open('s2_aggregate_network3.html', 'r').read()
+        return open('assets/s2_aggregate_network3.html', 'r').read()
     elif mydropdown2 == 'optionC' and myslider2 == 0:
-        return open('s3_aggregate_network1.html', 'r').read()
+        return open('assets/s3_aggregate_network1.html', 'r').read()
     elif mydropdown2 == 'optionC' and myslider2 == 1:
-        return open('s3_aggregate_network2.html', 'r').read()
+        return open('assets/s3_aggregate_network2.html', 'r').read()
     elif mydropdown2 == 'optionC' and myslider2 == 2:
-        return open('s3_aggregate_network3.html', 'r').read()
+        return open('assets/s3_aggregate_network3.html', 'r').read()
 
 
 # Define the callback function for Individual Weekly Graph
@@ -306,11 +306,11 @@ def update_output(mydropdown2,myslider2):
 def update_output(value):
     # Define the HTML content to display based on the dropdown menu
     if value == 'option a':
-        return open('class_network1.html', 'r').read()
+        return open('assets/class_network1.html', 'r').read()
     elif value == 'option b':
-        return open('class_network2.html', 'r').read()
+        return open('assets/class_network2.html', 'r').read()
     elif value == 'option c':
-        return open('class_network3.html', 'r').read()
+        return open('assets/class_network3.html', 'r').read()
 
 if __name__ == "__main__":
     app.run_server(debug=True, port=8078)
