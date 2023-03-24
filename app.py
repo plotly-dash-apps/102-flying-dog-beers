@@ -14,6 +14,7 @@ fig = px.scatter(df, x='lasercut', y='lasercut',
                  log_x=True, size_max=60)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
+server = app.server
 navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
@@ -35,7 +36,7 @@ navbar = dbc.NavbarSimple(
 className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top" ,
 )
 # Individual Weekly Graph
-div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_weekly_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 div2 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_weekly_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 div3 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_weekly_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 
@@ -234,6 +235,7 @@ def update_output(mydropdown,myslider):
     # Define the HTML content to display based on the dropdown menu
     if mydropdown== 'optionA' and myslider == 0 :
         return open('assets/s1_weekly_network1.html', 'r').read()
+
     elif mydropdown== 'optionA' and myslider == 1 :
         return open('assets/s1_weekly_network2.html', 'r').read()
     elif mydropdown== 'optionA' and myslider == 2 :
