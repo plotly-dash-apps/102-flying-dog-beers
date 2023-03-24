@@ -13,7 +13,7 @@ importlib-metadata==6.1.0
 itsdangerous==2.0.1
 Jinja2==3.0.3
 MarkupSafe==2.0.1
-numpy==1.21.6
+numpy==1.24.2
 pandas==1.1.5
 plotly==5.5.0
 python-dateutil==2.8.2
