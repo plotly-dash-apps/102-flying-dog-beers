@@ -323,18 +323,13 @@ def update_output(mydropdown2,myslider2):
 
 def update_output(mydropdown3,myslider3):
     # Define the HTML content to display based on the dropdown menu
-    if mydropdown3== 'option a':
+    if mydropdown3== 'option a'and myslider3 == 0 :
         return open('assets/class_network1.html', 'r').read()
-    elif myslider3 == 0 :
-        return open('assets/class_network1.html', 'r').read()
-    elif mydropdown3 == 'option b':
+    if mydropdown3 == 'option b' and myslider3 == 1:
         return open('assets/class_network2.html', 'r').read()
-    elif myslider3 == 1 :
-        return open('assets/class_network2.html', 'r').read()
-    elif mydropdown3 == 'option c':
+    if mydropdown3 == 'option c'and myslider3 == 2:
         return open('assets/class_network3.html', 'r').read()
-    elif myslider3 == 2 :
-        return open('assets/class_network3.html', 'r').read()
+
 
 if __name__ == "__main__":
     app.run_server(debug=True, port=8078)
