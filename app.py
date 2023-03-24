@@ -235,11 +235,10 @@ def update_output(mydropdown,myslider):
     # Define the HTML content to display based on the dropdown menu
     if mydropdown== 'optionA' and myslider == 0 :
         return open('assets/s1_weekly_network1.html', 'r').read()
-
     elif mydropdown== 'optionA' and myslider == 1 :
         return open('assets/s1_weekly_network2.html', 'r').read()
     elif mydropdown== 'optionA' and myslider == 2 :
-        return open('assets/s1_weekly_network2.html', 'r').read()
+        return open('assets/s1_weekly_network3.html', 'r').read()
     elif mydropdown == 'optionB' and myslider == 0:
         return open('assets/s2_weekly_network1.html', 'r').read()
     elif mydropdown== 'optionB' and myslider == 1 :
