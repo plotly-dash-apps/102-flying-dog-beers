@@ -199,7 +199,24 @@ app.layout = html.Div(
                      [
                          html.P('class collective keywords', className='font-weight-bold'),
                          html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
-                                     style={'height': '45vh'})
+                                     style={'height': '45vh'}),
+
+                         dbc.Row([dbc.Col([html.Div([
+                             # html.Label('Select a week:', style={'fontSize': '20px'}),
+                             dcc.Slider(
+                                 id='myslider3',
+                                 min=0,
+                                 max=2,
+                                 value=1,
+                                 step=1,
+                                 updatemode='drag',
+                                 marks={0: 'Week1', 1: 'Week2', 2: 'Week3'}
+                             )
+                         ], style={'width': '85%', 'margin': '30px', 'margin-top': '20px',
+                                   'color': '#000000',
+                                   'fontSize': '10px',
+                                   'padding': '5px'})
+                         ])])
 
                      ])
 
@@ -300,17 +317,23 @@ def update_output(mydropdown2,myslider2):
 # Define the callback function for Individual Weekly Graph
 @app.callback(
     Output('html-iframe-3', 'srcDoc'),
-    Input('mydropdown3', 'value')
-    #[Input('my-dropdown', 'value'),Input('my-slider', 'value')]
+    [Input('mydropdown3', 'value'),
+     Input('myslider3', 'value')]
 )
 
-def update_output(value):
+def update_output(mydropdown3,myslider3):
     # Define the HTML content to display based on the dropdown menu
-    if value == 'option a':
+    if mydropdown3== 'option a':
         return open('assets/class_network1.html', 'r').read()
-    elif value == 'option b':
+    elif myslider3 == 0 :
+        return open('assets/class_network1.html', 'r').read()
+    elif mydropdown3 == 'option b':
         return open('assets/class_network2.html', 'r').read()
-    elif value == 'option c':
+    elif myslider3 == 1 :
+        return open('assets/class_network2.html', 'r').read()
+    elif mydropdown3 == 'option c':
+        return open('assets/class_network3.html', 'r').read()
+    elif myslider3 == 2 :
         return open('assets/class_network3.html', 'r').read()
 
 if __name__ == "__main__":
