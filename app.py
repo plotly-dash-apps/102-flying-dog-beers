@@ -22,10 +22,10 @@ navbar = dbc.NavbarSimple(
             in_navbar=True,
             label="Menu📚",
             children=[
-                dbc.DropdownMenuItem("homepage"),
-                dbc.DropdownMenuItem("analysis"),
-                dbc.DropdownMenuItem(divider=True),
-                dbc.DropdownMenuItem("conclusion"),
+                dbc.DropdownMenuItem("mainpage"),
+                #dbc.DropdownMenuItem("analysis"),
+                #dbc.DropdownMenuItem(divider=True),
+                #dbc.DropdownMenuItem("conclusion"),
             ],
         ),
     ],
@@ -59,6 +59,20 @@ with open('s2_aggregate_network1.html', 'r') as f:
 
 with open('s3_aggregate_network1.html', 'r') as f:
     third_html_aggregate = f.read()
+
+# Class Collective Graph
+div7 = html.Div([html.Iframe(src=app.get_asset_url("class_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div8 = html.Div([html.Iframe(src=app.get_asset_url("class_network2.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div9 = html.Div([html.Iframe(src=app.get_asset_url("class_network3.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+content = html.Div(id="page-content")
+# Define the initial HTML content to display in the Iframe component
+initial_html_class = open('class_network1.html', 'r').read()
+
+with open('class_network2.html', 'r') as f:
+    second_html_class = f.read()
+
+with open('class_network3.html', 'r') as f:
+    third_html_class = f.read()
 
 # Define the Sidebar
 sidebar = html.Div(
@@ -94,13 +108,13 @@ sidebar = html.Div(
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
-                          html.P('See keywords of the whole class in 4 weeks',
+                          html.P('See class collectives map in 3 weeks',
                                  style={'margin-top': '16px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
-                          dcc.Dropdown(id='my-dropdown-3', options=[{'label': 'week 1', 'value': 'option a'},
+                          dcc.Dropdown(id='mydropdown3', options=[{'label': 'week 1', 'value': 'option a'},
                                                                     {'label': 'week 2', 'value': 'option b'},
-                                                                    {'label': 'week 3', 'value': 'option c'},
-                                                                    {'label': 'week 4', 'value': 'option d'}],
+                                                                    {'label': 'week 3', 'value': 'option c'}
+                                                                    ],
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
@@ -179,20 +193,28 @@ app.layout = html.Div(
                                    'padding': '5px'})
                          ])])
 
+                     ]),
+                 dbc.Col(
+                     [
+                         html.P('class collective keywords', className='font-weight-bold'),
+                         html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
+                                     style={'height': '45vh'})
+
                      ])
+
              ], style={"height": "50vh"}
          ),
 
          dbc.Row(
              [
                  dbc.Col(
-                     [ html.Hr(),
-                         html.P('keywords of the whole class'),
-                                         html.Div([
-                                             dcc.Graph(id='keywords', figure=fig)
-                                         ]), #md=10,
+                     [html.Hr(),
+                      html.P('keywords of the whole class'),
+                      html.Div([
+                          dcc.Graph(id='keywords', figure=fig)
+                      ]),  # md=10,
 
-                     ])
+                      ])
              ],
              style={"height": "50vh", 'margin': '8px'}
          )
@@ -200,19 +222,6 @@ app.layout = html.Div(
         fluid=True
     )
     ])
-
-# dbc.Row(
-#         [
-#            dbc.Col(
-#               [
-#                  html.P('keywords of the whole class'),
-#             html.Div([
-#                dcc.Graph(id='keywords', figure=fig)
-#           ]), #md=10,
-#
-#                   ])
-#          ],
-#         style={"height": "50vh", 'margin': '8px'}
 #  )
 # Define the callback function for Individual Weekly Graph
 @app.callback(
@@ -285,5 +294,23 @@ def update_output(mydropdown2,myslider2):
         return open('s3_aggregate_network2.html', 'r').read()
     elif mydropdown2 == 'optionC' and myslider2 == 2:
         return open('s3_aggregate_network3.html', 'r').read()
+
+
+# Define the callback function for Individual Weekly Graph
+@app.callback(
+    Output('html-iframe-3', 'srcDoc'),
+    Input('mydropdown3', 'value')
+    #[Input('my-dropdown', 'value'),Input('my-slider', 'value')]
+)
+
+def update_output(value):
+    # Define the HTML content to display based on the dropdown menu
+    if value == 'option a':
+        return open('class_network1.html', 'r').read()
+    elif value == 'option b':
+        return open('class_network2.html', 'r').read()
+    elif value == 'option c':
+        return open('class_network3.html', 'r').read()
+
 if __name__ == "__main__":
     app.run_server(debug=True, port=8078)
