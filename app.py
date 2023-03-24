@@ -1,63 +1,318 @@
 import dash
+import dash_bootstrap_components as dbc
 from dash import html
 from dash import dcc
-import plotly.graph_objs as go
+import pandas as pd
+#import numpy as np
+import plotly.express as px
+from dash.dependencies import Input, Output, State
+import dash_daq as daq
 
-########### Define your variables
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
-ibu_values=[35, 60, 85, 75]
-abv_values=[5.4, 7.1, 9.2, 4.3]
-color1='darkred'
-color2='orange'
-mytitle='Beer Comparison'
-tabtitle='beer!'
-myheading='Flying Dog Beers'
-label1='IBU'
-label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
-sourceurl='https://www.flyingdog.com/beers/'
+df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
+fig = px.scatter(df, x='lasercut', y='lasercut',
+                color='lasercut', hover_name='lasercut',
+                 log_x=True, size_max=60)
 
-########### Set up the chart
-bitterness = go.Bar(
-    x=beers,
-    y=ibu_values,
-    name=label1,
-    marker={'color':color1}
-)
-alcohol = go.Bar(
-    x=beers,
-    y=abv_values,
-    name=label2,
-    marker={'color':color2}
-)
-
-beer_data = [bitterness, alcohol]
-beer_layout = go.Layout(
-    barmode='group',
-    title = mytitle
-)
-
-beer_fig = go.Figure(data=beer_data, layout=beer_layout)
-
-
-########### Initiate the app
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
-app.title=tabtitle
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
+        dbc.DropdownMenu(
+            nav=True,
+            in_navbar=True,
+            label="Menu📚",
+            children=[
+                dbc.DropdownMenuItem("mainpage"),
+                #dbc.DropdownMenuItem("analysis"),
+                #dbc.DropdownMenuItem(divider=True),
+                #dbc.DropdownMenuItem("conclusion"),
+            ],
+        ),
+    ],
+    brand="Keyword Matrix📝",
+    brand_href="#",
+    sticky="top",
+className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top" ,
+)
+# Individual Weekly Graph
+div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_weekly_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div2 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_weekly_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div3 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_weekly_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 
-########### Set up the layout
-app.layout = html.Div(children=[
-    html.H1(myheading),
-    dcc.Graph(
-        id='flyingdog',
-        figure=beer_fig
-    ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
+content = html.Div(id="page-content")
+initial_html = open("assets/s1_weekly_network1.html", 'r').read()
+with open('assets/s2_weekly_network1.html', 'r') as f:
+    second_html = f.read()
+
+with open('assets/s3_weekly_network1.html', 'r') as f:
+    third_html = f.read()
+# Individual Aggregate Graph
+div4 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_aggregate_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div5 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_aggregate_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div6 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_aggregate_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+content = html.Div(id="page-content")
+# Define the initial HTML content to display in the Iframe component
+initial_html_aggregate = open('assets/s1_aggregate_network1.html', 'r').read()
+
+with open('assets/s2_aggregate_network1.html', 'r') as f:
+    second_html_aggregate = f.read()
+
+with open('assets/s3_aggregate_network1.html', 'r') as f:
+    third_html_aggregate = f.read()
+
+# Class Collective Graph
+div7 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div8 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network2.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+div9 = html.Div([html.Iframe(src=app.get_asset_url("assets/class_network3.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
+content = html.Div(id="page-content")
+# Define the initial HTML content to display in the Iframe component
+initial_html_class = open('assets/class_network1.html', 'r').read()
+
+with open('assets/class_network2.html', 'r') as f:
+    second_html_class = f.read()
+
+with open('assets/class_network3.html', 'r') as f:
+    third_html_class = f.read()
+
+# Define the Sidebar
+sidebar = html.Div(
+    [
+        dbc.Row(
+            [
+                html.H5('Find yourself here!',
+                        style={'margin-top': '12px', 'margin-left': '24px'})
+            ],
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+        dbc.Row(
+            [
+                html.Div([html.Hr(),
+                          html.P('Find your name to see individual weekly keywords',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='mydropdown', options=[{'label': 'student 1', 'value': 'optionA'},
+                                                                    {'label': 'student 2', 'value': 'optionB'},
+                                                                    {'label': 'student 3', 'value': 'optionC'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+                          html.P('Find your name to see your individual aggregated keywords in 4 weeks',
+                                 style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='mydropdown2', options=[{'label': 'student 1', 'value': 'optionA'},
+                                                                    {'label': 'student 2', 'value': 'optionB'},
+                                                                    {'label': 'student 3', 'value': 'optionC'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+                          html.P('See class collectives map in 3 weeks',
+                                 style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='mydropdown3', options=[{'label': 'week 1', 'value': 'option a'},
+                                                                    {'label': 'week 2', 'value': 'option b'},
+                                                                    {'label': 'week 3', 'value': 'option c'}
+                                                                    ],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+                          #html.Button(id='my-button', n_clicks=0, children='apply',
+                                      #style={'margin-top': '16px'},
+                                      #className='bg-dark text-white'),
+                          html.Hr()
+                          ])
+            ],
+            style={'height': '10vh', 'margin': '8px', 'display': 'flex'}), #html.Hr(),
+
+        #dbc.Row(
+            #[
+                #html.P('Brief instruction: xxxxxx', className='bg-dark text-white')
+           # ],
+           # style={"height": "45vh", 'margin': '8px', 'display': 'flex'}
+       # ),
+        #html.Div(id='my-output')
     ]
 )
 
-if __name__ == '__main__':
-    app.run_server()
+# Define the App Layout
+app.layout = html.Div(
+    [dbc.Container(
+        [dbc.Row(dbc.Col(navbar, width=30)),
+         html.Hr(),
+         dbc.Row(
+             [
+                 dbc.Col(sidebar, width=3, className='bg-dark'),
+                 # dbc.Col(content, width=9)
+                 dbc.Col(
+                     [
+                         html.P('individual weekly keywords', className='font-weight-bold'),
+                         html.Iframe(id='html-iframe', srcDoc=initial_html, width='95%', height='600',
+                                     style={'height': '45vh'}),
+
+                         dbc.Row([dbc.Col([html.Div([
+                             # html.Label('Select a week:', style={'fontSize': '20px'}),
+                             dcc.Slider(
+                                 id='myslider',
+                                 min=0,
+                                 max=2,
+                                 value=1,
+                                 step=1,
+                                 updatemode='drag',
+                                 marks={0: 'Week1', 1: 'Week2', 2: 'Week3'}
+                             ),
+                         ], style={'width': '85%', 'margin': '30px', 'margin-top': '20px',
+                                   'color': '#000000',
+                                   'fontSize': '10px',
+                                   'padding': '5px'})
+                         ])]),
+
+                     ]),
+
+                 dbc.Col(
+                     [
+                         html.P('individual aggregated keywords', className='font-weight-bold'),
+                         html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='95%', height='600',
+                                     style={'height': '45vh'}),
+
+                         dbc.Row([dbc.Col([html.Div([
+                             # html.Label('Select a week:', style={'fontSize': '20px'}),
+                             dcc.Slider(
+                                 id='myslider2',
+                                 min=0,
+                                 max=2,
+                                 value=1,
+                                 step=1,
+                                 updatemode='drag',
+                                 marks={0: 'Week1', 1: 'Week2', 2: 'Week3'}
+                             )
+                         ], style={'width': '85%', 'margin': '30px', 'margin-top': '20px',
+                                   'color': '#000000',
+                                   'fontSize': '10px',
+                                   'padding': '5px'})
+                         ])])
+
+                     ]),
+                 dbc.Col(
+                     [
+                         html.P('class collective keywords', className='font-weight-bold'),
+                         html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
+                                     style={'height': '45vh'})
+
+                     ])
+
+             ], style={"height": "50vh"}
+         ),
+
+         dbc.Row(
+             [
+                 dbc.Col(
+                     [html.Hr(),
+                      html.P('keywords of the whole class'),
+                      html.Div([
+                          dcc.Graph(id='keywords', figure=fig)
+                      ]),  # md=10,
+
+                      ])
+             ],
+             style={"height": "50vh", 'margin': '8px'}
+         )
+         ],
+        fluid=True
+    )
+    ])
+#  )
+# Define the callback function for Individual Weekly Graph
+@app.callback(
+    Output('html-iframe', 'srcDoc'),
+    [Input('mydropdown', 'value'),
+     Input('myslider', 'value') ]
+    #[Input('my-dropdown', 'value'),Input('my-slider', 'value')]
+)
+def update_output(mydropdown,myslider):
+    # Define the HTML content to display based on the dropdown menu
+    if mydropdown== 'optionA' and myslider == 0 :
+        return open('assets/s1_weekly_network1.html', 'r').read()
+
+    elif mydropdown== 'optionA' and myslider == 1 :
+        return open('assets/s1_weekly_network2.html', 'r').read()
+    elif mydropdown== 'optionA' and myslider == 2 :
+        return open('assets/s1_weekly_network2.html', 'r').read()
+    elif mydropdown == 'optionB' and myslider == 0:
+        return open('assets/s2_weekly_network1.html', 'r').read()
+    elif mydropdown== 'optionB' and myslider == 1 :
+        return open('assets/s2_weekly_network2.html', 'r').read()
+    elif mydropdown== 'optionB' and myslider == 2 :
+        return open('assets/s2_weekly_network3.html', 'r').read()
+    elif mydropdown == 'optionC' and myslider == 0:
+        return open('assets/s3_weekly_network1.html', 'r').read()
+    elif mydropdown == 'optionC' and myslider == 1:
+        return open('assets/s3_weekly_network2.html', 'r').read()
+    elif mydropdown == 'optionC' and myslider == 2:
+        return open('assets/s3_weekly_network3.html', 'r').read()
+
+
+
+
+
+
+#def update_output(value):
+    # Define the HTML content to display based on the dropdown menu
+    #if value == 'option1':
+        #return open('s1_aggregate_network1.html', 'r').read()
+    #elif value == 'option2':
+        #return open('s2_weekly_network1.html', 'r').read()
+    #elif value == 'option3':
+        #return open('s3_weekly_network1.html', 'r').read()
+
+
+
+
+# Define the callback function for Individual Aggregate Graph
+@app.callback(
+    Output('html-iframe-2', 'srcDoc'),
+    [Input('mydropdown2', 'value'),
+     Input('myslider2', 'value')]
+)
+def update_output(mydropdown2,myslider2):
+    # Define the HTML content to display based on the dropdown menu
+    if mydropdown2== 'optionA' and myslider2 == 0 :
+        return open('assets/s1_aggregate_network1.html', 'r').read()
+    elif mydropdown2== 'optionA' and myslider2 == 1 :
+        return open('assets/s1_aggregate_network2.html', 'r').read()
+    elif mydropdown2 == 'optionA' and myslider2 == 2:
+        return open('assets/s1_aggregate_network3.html', 'r').read()
+    elif mydropdown2 == 'optionB' and myslider2 == 0:
+        return open('assets/s2_aggregate_network1.html', 'r').read()
+    elif mydropdown2 == 'optionB' and myslider2 == 1:
+        return open('assets/s2_aggregate_network2.html', 'r').read()
+    elif mydropdown2 == 'optionB' and myslider2 == 2:
+        return open('assets/s2_aggregate_network3.html', 'r').read()
+    elif mydropdown2 == 'optionC' and myslider2 == 0:
+        return open('assets/s3_aggregate_network1.html', 'r').read()
+    elif mydropdown2 == 'optionC' and myslider2 == 1:
+        return open('assets/s3_aggregate_network2.html', 'r').read()
+    elif mydropdown2 == 'optionC' and myslider2 == 2:
+        return open('assets/s3_aggregate_network3.html', 'r').read()
+
+
+# Define the callback function for Individual Weekly Graph
+@app.callback(
+    Output('html-iframe-3', 'srcDoc'),
+    Input('mydropdown3', 'value')
+    #[Input('my-dropdown', 'value'),Input('my-slider', 'value')]
+)
+
+def update_output(value):
+    # Define the HTML content to display based on the dropdown menu
+    if value == 'option a':
+        return open('assets/class_network1.html', 'r').read()
+    elif value == 'option b':
+        return open('assets/class_network2.html', 'r').read()
+    elif value == 'option c':
+        return open('assets/class_network3.html', 'r').read()
+
+if __name__ == "__main__":
+    app.run_server(debug=True, port=8078)
