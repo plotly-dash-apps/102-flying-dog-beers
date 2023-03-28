@@ -249,7 +249,7 @@ tooltip={"placement": "bottom", "always_visible": True},included=False
 
                  dbc.Col(
                      [
-                         html.P('Aggregated weekly keywords', className='font-weight-bold'),
+                         html.P('Individuak aggregated weekly keywords', className='font-weight-bold'),
                          html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='95%', height='600',
                                      style={'height': '45vh'}),
 
@@ -299,13 +299,13 @@ dbc.Col(
                          ])])
 
                      ]),
-                 dbc.Col(
-                     [
-                         html.P('Total class collective keywords', className='font-weight-bold'),
-                         html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
-                                     style={'height': '45vh'})
+                 #dbc.Col(
+                     #[
+                         #html.P('Total class collective keywords', className='font-weight-bold'),
+                         #html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
+                                     #style={'height': '45vh'})
 
-                     ])
+                     #])
 
              ], style={"height": "50vh"}
          )
@@ -1460,21 +1460,21 @@ def update_output(yeardropdown,mydropdown2,myslider2):
 
 
 # Define the callback function for year Graph in total
-@app.callback(
-    Output('html-iframe-3', 'srcDoc'),
+#@#app.callback(
+    #Output('html-iframe-3', 'srcDoc'),
     #Input('mydropdown3', 'value')
-    Input('yeardropdown', 'value')
+    #Input('yeardropdown', 'value')
     #[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
-)
+#)
 
-def update_output(value):
+#def update_output(value):
     # Define the HTML content to display based on the dropdown menu
-    if value == '2021':
-        return open('assets/2021_class_1.html', 'r').read()
-    elif value == '2022':
-        return open('assets/2022_class_1.html', 'r').read()
-    elif value == '2023':
-        return open('assets/2023_class_1.html', 'r').read()
+    #if value == '2021':
+        #return open('assets/2021_class_1.html', 'r').read()
+    #elif value == '2022':
+        #return open('assets/2022_class_1.html', 'r').read()
+    #elif value == '2023':
+        #return open('assets/2023_class_1.html', 'r').read()
 
 # Define the callback function for Individual Weekly Graph
 @app.callback(
