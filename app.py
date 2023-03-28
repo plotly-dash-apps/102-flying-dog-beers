@@ -164,7 +164,7 @@ sidebar = html.Div(
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
-                          html.P('Find your name to see individual weekly keywords',
+                          html.P('Find your name to see your individual weekly keywords',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
                           dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
@@ -182,22 +182,22 @@ sidebar = html.Div(
                                        #     {'label': 'student 3', 'value': 'optionC'}],
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
-                                       ),
+                                       ),html.Hr()
 
-                          html.P('See class collectives map',
-                                 style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 className='bg-dark text-white'),
-                          dcc.Dropdown(id='mydropdown3', options=[{'label': '2021', 'value': '2021'},
-                                                                  {'label': '2022', 'value': '2022'},
-                                                                  {'label': '2023', 'value': '2023'}
-                                                                  ],
-                                       multi=False,
-                                       style={'width': '220px', 'color': '#000000'}
-                                       ),
+                          #html.P('See class collectives map',
+                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 #className='bg-dark text-white'),
+                          #dcc.Dropdown(id='mydropdown3', options=[{'label': '2021', 'value': '2021'},
+                                                                  #{'label': '2022', 'value': '2022'},
+                                                                  #{'label': '2023', 'value': '2023'}
+                                                                  #],
+                                       #multi=False,
+                                       #style={'width': '220px', 'color': '#000000'}
+                                       #),
                           # html.Button(id='my-button', n_clicks=0, children='apply',
-                          # style={'margin-top': '16px'},
-                          # className='bg-dark text-white'),
-                          html.Hr()
+                           #style={'margin-top': '16px'},
+                          #className='bg-dark text-white'),
+                          #html.Hr()
                           ])
             ],
             style={'height': '40vh', 'margin': '10px', 'display': 'flex'}),  # html.Hr(),
@@ -223,7 +223,7 @@ app.layout = html.Div(
                  # dbc.Col(content, width=9)
                  dbc.Col(
                      [
-                         html.P('individual weekly keywords', className='font-weight-bold'),
+                         html.P('Individual weekly keywords', className='font-weight-bold'),
                          html.Iframe(id='html-iframe', srcDoc=initial_html, width='95%', height='600',
                                      style={'height': '45vh'}),
 
@@ -249,7 +249,7 @@ tooltip={"placement": "bottom", "always_visible": True},included=False
 
                  dbc.Col(
                      [
-                         html.P('individual aggregated keywords', className='font-weight-bold'),
+                         html.P('Aggregated weekly keywords', className='font-weight-bold'),
                          html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='95%', height='600',
                                      style={'height': '45vh'}),
 
@@ -273,9 +273,35 @@ tooltip={"placement": "bottom", "always_visible": True},included=False
                          ])])
 
                      ]),
+dbc.Col(
+                     [
+                         html.P(' Weekly class collective keywords ', className='font-weight-bold'),
+                         html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='95%', height='600',
+                                     style={'height': '45vh'}),
+
+                         dbc.Row([dbc.Col([html.Div([
+                             # html.Label('Select a week:', style={'fontSize': '20px'}),
+                             dcc.Slider(
+                                 id='myslider3',
+                                 min=0,
+                                 max=10,
+                                 value=1,
+                                 step=1,
+                                 updatemode='drag',
+                                 marks={0: 'Week', 1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6',
+                                        7: '7', 8: '8', 9: '9', 10: '10'},
+                                 tooltip={"placement": "bottom", "always_visible": True}, included=False
+                             ),
+                         ], style={'width': '90%', 'margin': '30px', 'margin-top': '20px',
+                                   'color': '#000000',
+                                   'fontSize': '10px',
+                                   'padding': '5px'})
+                         ])])
+
+                     ]),
                  dbc.Col(
                      [
-                         html.P('class collective keywords', className='font-weight-bold'),
+                         html.P('Total class collective keywords', className='font-weight-bold'),
                          html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
                                      style={'height': '45vh'})
 
@@ -1432,10 +1458,12 @@ def update_output(yeardropdown,mydropdown2,myslider2):
         return open('assets/2022_s12_aggregate_10.html', 'r').read()
 
 
-# Define the callback function for Individual Weekly Graph
+
+# Define the callback function for year Graph in total
 @app.callback(
     Output('html-iframe-3', 'srcDoc'),
-    Input('mydropdown3', 'value')
+    #Input('mydropdown3', 'value')
+    Input('yeardropdown', 'value')
     #[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
 )
 
@@ -1447,5 +1475,68 @@ def update_output(value):
         return open('assets/2022_class_1.html', 'r').read()
     elif value == '2023':
         return open('assets/2023_class_1.html', 'r').read()
+
+# Define the callback function for Individual Weekly Graph
+@app.callback(
+    Output('html-iframe-4', 'srcDoc'),
+    [Input('yeardropdown', 'value'),Input('myslider3', 'value')]
+    #[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
+)
+
+def update_output(yeardropdown,myslider3):
+    # Define the HTML content to display based on the dropdown menu
+    #2021
+    if yeardropdown == '2021' and myslider3 ==1:
+        return open('assets/2021_class_1.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 ==2:
+        return open('assets/2021_class_2.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 3:
+        return open('assets/2021_class_3.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 4:
+        return open('assets/2021_class_4.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 5:
+        return open('assets/2021_class_5.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 6:
+        return open('assets/2021_class_6.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 7:
+        return open('assets/2021_class_7.html', 'r').read()
+    elif yeardropdown == '2021' and myslider3 == 8:
+        return open('assets/2021_class_8.html', 'r').read()
+    #2022
+    if yeardropdown == '2022'and myslider3 ==1:
+        return open('assets/2022_class_1.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 ==2:
+        return open('assets/2022_class_2.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 3:
+        return open('assets/2022_class_3.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 4:
+        return open('assets/2022_class_4.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 5:
+        return open('assets/2022_class_5.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 6:
+        return open('assets/2022_class_6.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 7:
+        return open('assets/2022_class_7.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 8:
+        return open('assets/2022_class_8.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 9:
+        return open('assets/2022_class_9.html', 'r').read()
+    elif yeardropdown == '2022' and myslider3 == 10:
+        return open('assets/2022_class_10.html', 'r').read()
+
+        # 2023
+    if yeardropdown == '2023'and myslider3 ==1:
+        return open('assets/2023_class_1.html', 'r').read()
+    elif yeardropdown == '2023' and myslider3 ==2:
+        return open('assets/2023_class_2.html', 'r').read()
+    elif yeardropdown == '2023' and myslider3 == 3:
+        return open('assets/2023_class_3.html', 'r').read()
+    elif yeardropdown == '2023' and myslider3 == 4:
+        return open('assets/2023_class_4.html', 'r').read()
+    elif yeardropdown == '2023' and myslider3 == 5:
+        return open('assets/2023_class_5.html', 'r').read()
+
+
+
 if __name__ == "__main__":
     app.run_server(port=8073)
