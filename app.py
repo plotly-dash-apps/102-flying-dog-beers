@@ -154,7 +154,7 @@ sidebar = html.Div(
         dbc.Row(
             [
                 html.Div([html.Hr(),
-                          html.P('Select a year first',
+                          html.P('Individual knowledge map',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
                           dcc.Dropdown(id='yeardropdown', options=[{'label': '2021', 'value': '2021'},
@@ -174,15 +174,16 @@ sidebar = html.Div(
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
-                          html.P('Find your name to see your individual aggregated keywords',
-                                 style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 className='bg-dark text-white'),
-                          dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
+                          #html.P('Find your name to see your individual aggregated keywords',
+                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 #className='bg-dark text-white'),
+                         # dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
                                        #      {'label': 'student 2', 'value': 'optionB'},
                                        #     {'label': 'student 3', 'value': 'optionC'}],
-                                       multi=False,
-                                       style={'width': '220px', 'color': '#000000'}
-                                       ),html.Hr()
+                                       #multi=False,
+                                       #style={'width': '220px', 'color': '#000000'}
+                                       #),
+                          #html.Hr(),
 
                           #html.P('See class collectives map',
                                  #style={'margin-top': '16px', 'margin-bottom': '4px'},
@@ -223,25 +224,26 @@ app.layout = html.Div(
                  # dbc.Col(content, width=9)
                  dbc.Col(
                      [
-                         html.P('Individual weekly keywords', className='font-weight-bold'),
+                         html.P('Individual weekly keywords', className='text-center font-weight-bold'),
                          html.Iframe(id='html-iframe', srcDoc=initial_html, width='95%', height='600',
                                      style={'height': '45vh'}),
 
                          dbc.Row([dbc.Col([html.Div([
-                             # html.Label('Select a week:', style={'fontSize': '20px'}),
+                            #html.Label('Select a week:', style={'fontSize': '20px'}),
                              dcc.Slider(
                                  id='myslider',
-                                 min=0,
+                                 min=1,
                                  max=10,
                                  value=1,
                                  step=1,
                                  updatemode='drag',
-                                 marks={0:'Week' ,1: {'label': '1'}, 2: {'label': '2' }, 3: '3',4: '4', 5: '5', 6: '6',7: '7', 8: '8', 9: '9',10: '10'},
+                                 marks={1: {'label': '1'}, 2: {'label': '2' }, 3: '3',4: '4', 5: '5', 6: '6',7: '7', 8: '8', 9: '9',10: '10'},
 tooltip={"placement": "bottom", "always_visible": True},included=False
                              ),
+                             dbc.Label("Week", className="text-center w-100 mb-0",width='10%'),
                          ], style={'width': '90%', 'margin': '20px', 'margin-top': '20px',
-                                   'color': '#000000',
-                                   'fontSize': '10px',
+                                   #'color': '#000000',
+                                   'fontSize': '15px',
                                    'padding': '5px'})
                          ])]),
 
@@ -249,7 +251,7 @@ tooltip={"placement": "bottom", "always_visible": True},included=False
 
                  dbc.Col(
                      [
-                         html.P('Individuak aggregated weekly keywords', className='font-weight-bold'),
+                         html.P('Individual aggregated weekly keywords', className='text-center font-weight-bold'),
                          html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='95%', height='600',
                                      style={'height': '45vh'}),
 
@@ -257,25 +259,26 @@ tooltip={"placement": "bottom", "always_visible": True},included=False
                              # html.Label('Select a week:', style={'fontSize': '20px'}),
                              dcc.Slider(
                                  id='myslider2',
-                                 min=0,
+                                 min=1,
                                  max=10,
                                  value=1,
                                  step=1,
                                  updatemode='drag',
-                                 marks={0: 'Week', 1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6',
-                                        7: '7', 8: '8', 9: '9', 10: '10'},
+                                 marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                        8: '8', 9: '9', 10: '10'},
                                  tooltip={"placement": "bottom", "always_visible": True}, included=False
                              ),
-                         ], style={'width': '90%', 'margin': '30px', 'margin-top': '20px',
-                                   'color': '#000000',
-                                   'fontSize': '10px',
+                             dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                         ], style={'width': '90%', 'margin': '20px', 'margin-top': '20px',
+                                   # 'color': '#000000',
+                                   'fontSize': '15px',
                                    'padding': '5px'})
-                         ])])
+                         ])]),
 
                      ]),
 dbc.Col(
                      [
-                         html.P(' Weekly class collective keywords ', className='font-weight-bold'),
+                         html.P(' Weekly class collective keywords ', className='text-center font-weight-bold'),
                          html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='95%', height='600',
                                      style={'height': '45vh'}),
 
@@ -283,20 +286,21 @@ dbc.Col(
                              # html.Label('Select a week:', style={'fontSize': '20px'}),
                              dcc.Slider(
                                  id='myslider3',
-                                 min=0,
+                                 min=1,
                                  max=10,
                                  value=1,
                                  step=1,
                                  updatemode='drag',
-                                 marks={0: 'Week', 1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6',
-                                        7: '7', 8: '8', 9: '9', 10: '10'},
+                                 marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                        8: '8', 9: '9', 10: '10'},
                                  tooltip={"placement": "bottom", "always_visible": True}, included=False
                              ),
-                         ], style={'width': '90%', 'margin': '30px', 'margin-top': '20px',
-                                   'color': '#000000',
-                                   'fontSize': '10px',
+                             dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                         ], style={'width': '90%', 'margin': '20px', 'margin-top': '20px',
+                                   # 'color': '#000000',
+                                   'fontSize': '15px',
                                    'padding': '5px'})
-                         ])])
+                         ])]),
 
                      ]),
                  #dbc.Col(
