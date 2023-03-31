@@ -9,12 +9,12 @@ from dash.dependencies import Input, Output, State
 import dash_daq as daq
 import os
 
-[2]
+
 df = pd.read_excel('week_keyword_table_s01_2021.xlsx', index_col=0)
 # fig = px.scatter(df, x='lasercut', y='lasercut',
 #               color='lasercut', hover_name='lasercut',
 #               log_x=True, size_max=60)
-[3]
+
 app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
 
 server = app.server
@@ -38,7 +38,7 @@ navbar = dbc.NavbarSimple(
     sticky="top",
     className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top",
 )
-[4]
+
 # Individual Weekly Graph
 div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_weekly_network1.html"),
                              id="graph1")])  # width='90%', height='600', , style={"background":"transparent", "height":"700px"})
@@ -158,7 +158,7 @@ with open('assets/2022_class_1.html', 'r') as f:
 with open('assets/2023_class_1.html', 'r') as f:
     third_html_class = f.read()
 
-[5]
+
 # Define the Sidebar
 sidebar = html.Div(
     [
@@ -270,7 +270,7 @@ sidebar = html.Div(
     ],
 )
 
-[6]
+
 html_graphs = html.Div(
     [
         dbc.Container(
@@ -370,7 +370,7 @@ html_graphs = html.Div(
             fluid=True
         )
     ])
-[7]
+
 # Define the App Layout
 app.layout = html.Div(
     [dbc.Container(
@@ -383,7 +383,7 @@ app.layout = html.Div(
         fluid=True)
     ])
 
-[8]
+
 
 
 # Define the callbacks of year dropdown and weekly dropdown
@@ -489,7 +489,6 @@ def update_students(year):
     return options
 
 
-[10]
 
 
 # Define the callback function for Individual Weekly Graph
