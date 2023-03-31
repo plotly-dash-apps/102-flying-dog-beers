@@ -174,15 +174,15 @@ sidebar = html.Div(
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
-                          html.P('Find your name to see your individual aggregated keywords',
-                                 style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 className='bg-dark text-white'),
-                          dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
+                          #html.P('Find your name to see your individual aggregated keywords',
+                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 #className='bg-dark text-white'),
+                          #dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
                                        #      {'label': 'student 2', 'value': 'optionB'},
                                        #     {'label': 'student 3', 'value': 'optionC'}],
-                                       multi=False,
-                                       style={'width': '220px', 'color': '#000000'}
-                                       ),
+                                       #multi=False,
+                                       #style={'width': '220px', 'color': '#000000'}
+                                       #),
 
 
 
@@ -369,6 +369,57 @@ app.layout = html.Div(
                  dbc.Col(html_graphs)])],
         fluid=True)
     ])
+
+# Define the callbacks of year dropdown and weekly dropdown
+@app.callback(
+    Output('mydropdown', 'options'),
+    Input('yeardropdown', 'value'))
+def update_students(year):
+    if year == '2021':
+        options = [
+            {'label': 'Student 1', 'value': 'student 1'},
+            {'label': 'Student 2', 'value': 'student 2'},
+            {'label': 'Student 3', 'value': 'student 3'},
+            {'label': 'Student 4', 'value': 'student 4'},
+            {'label': 'Student 5', 'value': 'student 5'},
+            {'label': 'Student 6', 'value': 'student 6'},
+            {'label': 'Student 7', 'value': 'student 7'}
+        ]
+    elif year == '2022':
+        options = [
+            {'label': 'Student 1', 'value': 'Student 1'},
+            {'label': 'Student 2', 'value': 'Student 2'},
+            {'label': 'Student 3', 'value': 'Student 3'},
+            {'label': 'Student 4', 'value': 'Student 4'},
+            {'label': 'Student 5', 'value': 'Student 5'},
+            {'label': 'Student 6', 'value': 'Student 6'},
+            {'label': 'Student 7', 'value': 'Student 7'},
+            {'label': 'Student 8', 'value': 'Student 8'},
+            {'label': 'Student 9', 'value': 'Student 9'},
+            {'label': 'Student 10', 'value': 'Student 10'},
+            {'label': 'Student 11', 'value': 'Student 11'},
+            {'label': 'Student 12', 'value': 'Student 12'}
+        ]
+    elif year == '2023':
+        options = [
+            {'label': 'Student 1', 'value': 'student_1'},
+            {'label': 'Student 2', 'value': 'student_2'},
+            {'label': 'Student 3', 'value': 'student_3'},
+            {'label': 'Student 4', 'value': 'student_4'},
+            {'label': 'Student 5', 'value': 'student_5'},
+            {'label': 'Student 6', 'value': 'student_6'},
+            {'label': 'Student 7', 'value': 'student_7'},
+            {'label': 'Student 8', 'value': 'student_8'},
+            {'label': 'Student 9', 'value': 'student_9'},
+            {'label': 'Student 10', 'value': 'student_10'},
+            {'label': 'Student 11', 'value': 'student_11'},
+            {'label': 'Student 12', 'value': 'student_12'}
+        ]
+    else:
+        options = []
+    return options
+
+
 
 
 # Define the callback function for Individual Weekly Graph
@@ -887,517 +938,517 @@ def update_output(yeardropdown,mydropdown,myslider):
 # Define the callback function for Individual Aggregate Graph
 @app.callback(
     Output('html-iframe-2', 'srcDoc'),
-[Input('yeardropdown', 'value'), Input('mydropdown2', 'value'), Input('myslider2', 'value')]
+[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
     #[Input('mydropdown2', 'value')]
 )
-def update_output(yeardropdown,mydropdown2,myslider2):
+def update_output(yeardropdown,mydropdown,myslider2):
     # Define the HTML content to display based on the dropdown menu
-    if yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_a':
+    if yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_b':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_c':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_d':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_e':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_f':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2021' and myslider2==1 and mydropdown2 == 'option_g':
+    elif yeardropdown=='2021' and myslider2==1 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_1.html', 'r').read()
 
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_A':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_B':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_C':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_D':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_E':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_F':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_G':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_H':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_I':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_J':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_K':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2022' and myslider2==1 and mydropdown2 == 'option_L':
+    elif yeardropdown=='2022' and myslider2==1 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_1.html', 'r').read()
 
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option A':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_1':
         return open('assets/2023_s1_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option B':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_2':
         return open('assets/2023_s2_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option C':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_3':
         return open('assets/2023_s3_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option D':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_4':
         return open('assets/2023_s4_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option E':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_5':
         return open('assets/2023_s5_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option F':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_6':
         return open('assets/2023_s6_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option G':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_7':
         return open('assets/2023_s7_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option H':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_8':
         return open('assets/2023_s8_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option I':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_9':
         return open('assets/2023_s9_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option J':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_10':
         return open('assets/2023_s10_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option K':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_11':
         return open('assets/2023_s11_aggregate_1.html', 'r').read()
-    elif yeardropdown=='2023' and myslider2==1 and mydropdown2 == 'option L':
+    elif yeardropdown=='2023' and myslider2==1 and mydropdown == 'student_12':
         return open('assets/2023_s12_aggregate_1.html', 'r').read()
 
-    if yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 2 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_2.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 1 ':
         return open('assets/2022_s1_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 2 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_2.html', 'r').read()
 
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option A':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_1':
         return open('assets/2023_s1_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option B':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_2':
         return open('assets/2023_s2_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option C':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_3':
         return open('assets/2023_s3_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option D':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_4':
         return open('assets/2023_s4_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option E':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_5':
         return open('assets/2023_s5_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option F':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_6':
         return open('assets/2023_s6_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option G':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_7':
         return open('assets/2023_s7_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option H':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_8':
         return open('assets/2023_s8_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option I':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_9':
         return open('assets/2023_s9_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option J':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_10':
         return open('assets/2023_s10_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option K':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_11':
         return open('assets/2023_s11_aggregate_2.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown2 == 'option L':
+    elif yeardropdown == '2023' and myslider2 == 2 and mydropdown == 'student_12':
         return open('assets/2023_s12_aggregate_2.html', 'r').read()
     #start here 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
     #week 3
-    if yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 3 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_3.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 3 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_3.html', 'r').read()
 
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option A':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_1':
         return open('assets/2023_s1_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option B':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_2':
         return open('assets/2023_s2_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option C':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_3':
         return open('assets/2023_s3_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option D':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_4':
         return open('assets/2023_s4_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option E':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_5':
         return open('assets/2023_s5_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option F':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_6':
         return open('assets/2023_s6_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option G':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_7':
         return open('assets/2023_s7_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option H':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_8':
         return open('assets/2023_s8_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option I':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_9':
         return open('assets/2023_s9_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option J':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_10':
         return open('assets/2023_s10_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option K':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_11':
         return open('assets/2023_s11_aggregate_3.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown2 == 'option L':
+    elif yeardropdown == '2023' and myslider2 == 3 and mydropdown == 'student_12':
         return open('assets/2023_s12_aggregate_3.html', 'r').read()
 # Week 4
 
-    if yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 4 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_4.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 4 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_4.html', 'r').read()
 
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option A':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_1':
         return open('assets/2023_s1_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option B':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_2':
         return open('assets/2023_s2_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option C':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_3':
         return open('assets/2023_s3_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option D':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_4':
         return open('assets/2023_s4_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option E':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_5':
         return open('assets/2023_s5_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option F':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_6':
         return open('assets/2023_s6_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option G':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_7':
         return open('assets/2023_s7_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option H':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_8':
         return open('assets/2023_s8_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option I':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_9':
         return open('assets/2023_s9_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option J':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_10':
         return open('assets/2023_s10_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option K':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_11':
         return open('assets/2023_s11_aggregate_4.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown2 == 'option L':
+    elif yeardropdown == '2023' and myslider2 == 4 and mydropdown == 'student_12':
         return open('assets/2023_s12_aggregate_4.html', 'r').read()
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 5
-    if yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 5 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_5.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 5 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_5.html', 'r').read()
 
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option A':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_1':
         return open('assets/2023_s1_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option B':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_2':
         return open('assets/2023_s2_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option C':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_3':
         return open('assets/2023_s3_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option D':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_4':
         return open('assets/2023_s4_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option E':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_5':
         return open('assets/2023_s5_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option F':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_6':
         return open('assets/2023_s6_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option G':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_7':
         return open('assets/2023_s7_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option H':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_8':
         return open('assets/2023_s8_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option I':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_9':
         return open('assets/2023_s9_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option J':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_10':
         return open('assets/2023_s10_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option K':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_11':
         return open('assets/2023_s11_aggregate_5.html', 'r').read()
-    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown2 == 'option L':
+    elif yeardropdown == '2023' and myslider2 == 5 and mydropdown == 'student_12':
         return open('assets/2023_s12_aggregate_5.html', 'r').read()
 
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 6
-    if yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 6 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_6.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_6.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 6 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_6.html', 'r').read()
 
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 7
-    if yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 7 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_7.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_7.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 7 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_7.html', 'r').read()
 
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 8
-    if yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_a':
+    if yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 1':
         return open('assets/2021_s1_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_b':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 2':
         return open('assets/2021_s2_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_c':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 3':
         return open('assets/2021_s3_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_d':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 4':
         return open('assets/2021_s4_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_e':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 5':
         return open('assets/2021_s5_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_f':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 6':
         return open('assets/2021_s6_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown2 == 'option_g':
+    elif yeardropdown == '2021' and myslider2 == 8 and mydropdown == 'student 7':
         return open('assets/2021_s7_aggregate_8.html', 'r').read()
 
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_A':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_8.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 8 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_8.html', 'r').read()
 
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 9
-    if yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_A':
+    if yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_9.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 9 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_9.html', 'r').read()
 
 # 2021:8 weeks ; 2022:10 weeks ; 2023: 5 weeks
 # week 10
-    if yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_A':
+    if yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 1':
         return open('assets/2022_s1_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_B':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 2':
         return open('assets/2022_s2_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_C':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 3':
         return open('assets/2022_s3_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_D':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 4':
         return open('assets/2022_s4_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_E':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 5':
         return open('assets/2022_s5_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_F':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 6':
         return open('assets/2022_s6_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_G':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 7':
         return open('assets/2022_s7_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_H':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 8':
         return open('assets/2022_s8_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_I':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 9':
         return open('assets/2022_s9_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_J':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 10':
         return open('assets/2022_s10_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_K':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 11':
         return open('assets/2022_s11_aggregate_10.html', 'r').read()
-    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown2 == 'option_L':
+    elif yeardropdown == '2022' and myslider2 == 10 and mydropdown == 'Student 12':
         return open('assets/2022_s12_aggregate_10.html', 'r').read()
 
 
