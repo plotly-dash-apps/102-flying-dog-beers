@@ -245,7 +245,7 @@ dbc.Row(
 
 
 
-            style={'height': '40vh', 'margin': '10px', 'display': 'flex'})
+            style={'height': '80vh', 'margin': '10px', 'display': 'flex'})
         # html.Hr(),
 
         # dbc.Row(
@@ -265,7 +265,7 @@ html_graphs = html.Div(
                 [
                     dbc.Col(
                         [
-                            html.P('Individual weekly keywords', className='text-center font-weight-bold',
+                            html.P('Individual weekly keywords', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -294,7 +294,7 @@ html_graphs = html.Div(
 
                     dbc.Col(
                         [
-                            html.P('Individual aggregated weekly keywords', className='text-center font-weight-bold',
+                            html.P('Individual aggregated weekly keywords', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -323,8 +323,8 @@ html_graphs = html.Div(
 
                     dbc.Col(
                         [
-                            html.P(' Weekly class collective keywords ', className='text-center font-weight-bold',
-                                   style={'fontWeight': 'bold', 'marginRight': '50px'}),
+                            html.P(' Weekly class collective keywords ', className='text-end fs-5 font-weight-bold',
+                                   style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='180%', height='800',
                                         style={'height': '65vh'}),
 
@@ -365,7 +365,7 @@ app.layout = html.Div(
          html.Hr(),
          dbc.Row(
              [
-                 dbc.Col(sidebar, width=3, className='bg-dark'),
+                 dbc.Col(sidebar, width=3,className='bg-dark'),
                  dbc.Col(html_graphs)])],
         fluid=True)
     ])
