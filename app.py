@@ -20,11 +20,11 @@ app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
 navbar = dbc.NavbarSimple(
     children=[
-        dbc.NavItem(dbc.NavLink("TLTL Lab Link������", href="https://tltlab.org/")),
+        dbc.NavItem(dbc.NavLink("TLTL Lab Link", href="https://tltlab.org/")),
         dbc.DropdownMenu(
             nav=True,
             in_navbar=True,
-            label="Menu������",
+            label="Menu",
             children=[
                 dbc.DropdownMenuItem("mainpage"),
                 # dbc.DropdownMenuItem("analysis"),
@@ -33,7 +33,7 @@ navbar = dbc.NavbarSimple(
             ],
         ),
     ],
-    brand="Keyword Matrix������",
+    brand="Keyword Matrix",
     brand_href="#",
     sticky="top",
     className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top",
