@@ -131,29 +131,29 @@ indi_aggregate_s10_2023 = aggregate_individual_knowledge_map(year2023_df[9],pale
 indi_aggregate_s11_2023 = aggregate_individual_knowledge_map(year2023_df[10],palette_2023)
 indi_aggregate_s12_2023 = aggregate_individual_knowledge_map(year2023_df[11],palette_2023)
 
-indi_aggregate_s11_2023[4].show("assets/2023_s11_aggregate_5.html")
+indi_aggregate_s11_2023[0].show("assets/2023_s11_aggregate_1.html")
 
-indi_aggregate_s10_2023[4].show("assets/2023_s10_aggregate_5.html")
+indi_aggregate_s10_2023[0].show("assets/2023_s10_aggregate_1.html")
 
-indi_aggregate_s12_2023[4].show("assets/2023_s12_aggregate_5.html")
+indi_aggregate_s12_2023[0].show("assets/2023_s12_aggregate_1.html")
 
-indi_aggregate_s9_2023[4].show("assets/2023_s9_aggregate_5.html")
+indi_aggregate_s9_2023[0].show("assets/2023_s9_aggregate_1.html")
 
-indi_aggregate_s8_2023[4].show("assets/2023_s8_aggregate_5.html")
+indi_aggregate_s8_2023[0].show("assets/2023_s8_aggregate_1.html")
 
-indi_aggregate_s7_2023[4].show("assets/2023_s7_aggregate_5.html")
+indi_aggregate_s7_2023[0].show("assets/2023_s7_aggregate_1.html")
 
-indi_aggregate_s6_2023[4].show("assets/2023_s6_aggregate_5.html")
+indi_aggregate_s6_2023[0].show("assets/2023_s6_aggregate_1.html")
 
-indi_aggregate_s5_2023[4].show("assets/2023_s5_aggregate_5.html")
+indi_aggregate_s5_2023[0].show("assets/2023_s5_aggregate_1.html")
 
-indi_aggregate_s4_2023[4].show("assets/2023_s4_aggregate_5.html")
+indi_aggregate_s4_2023[0].show("assets/2023_s4_aggregate_1.html")
 
-indi_aggregate_s3_2023[4].show("assets/2023_s3_aggregate_5.html")
+indi_aggregate_s3_2023[0].show("assets/2023_s3_aggregate_1.html")
 
-indi_aggregate_s2_2023[4].show("assets/2023_s2_aggregate_5.html")
+indi_aggregate_s2_2023[0].show("assets/2023_s2_aggregate_1.html")
 
-indi_aggregate_s1_2023[4].show("assets/2023_s1_aggregate_5.html")
+indi_aggregate_s1_2023[0].show("assets/2023_s1_aggregate_1.html")
 
 
 
