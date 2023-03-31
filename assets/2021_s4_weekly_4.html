@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 55, "label": "p5", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 80, "label": "trial error", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 81, "label": "model learner", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week4"}]);
+                  nodes = new vis.DataSet([{"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#38c172", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#38c172", "id": 55, "label": "p5", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 80, "label": "trial error", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 81, "label": "model learner", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week4"}]);
                   edges = new vis.DataSet([{"from": 43, "to": 52}, {"from": 43, "to": 55}, {"from": 52, "to": 55}, {"from": 58, "to": 64}, {"from": 58, "to": 65}, {"from": 58, "to": 74}, {"from": 58, "to": 76}, {"from": 58, "to": 80}, {"from": 58, "to": 81}, {"from": 58, "to": 83}, {"from": 64, "to": 65}, {"from": 64, "to": 74}, {"from": 64, "to": 76}, {"from": 64, "to": 80}, {"from": 64, "to": 81}, {"from": 64, "to": 83}, {"from": 65, "to": 74}, {"from": 65, "to": 76}, {"from": 65, "to": 80}, {"from": 65, "to": 81}, {"from": 65, "to": 83}, {"from": 74, "to": 76}, {"from": 74, "to": 80}, {"from": 74, "to": 81}, {"from": 74, "to": 83}, {"from": 76, "to": 80}, {"from": 76, "to": 81}, {"from": 76, "to": 83}, {"from": 80, "to": 81}, {"from": 80, "to": 83}, {"from": 81, "to": 83}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

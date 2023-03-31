@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 20, "label": "batteri", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 27, "label": "circuit", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#97c2fc", "id": 117, "label": "hot glue", "shape": "dot", "size": 6, "title": "Week6"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#f6993f", "id": 20, "label": "batteri", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#f6993f", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#f6993f", "id": 27, "label": "circuit", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#4dc0b5", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#4dc0b5", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#9561e2", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week6"}, {"color": "#f66d9b", "id": 117, "label": "hot glue", "shape": "dot", "size": 6, "title": "Week6"}]);
                   edges = new vis.DataSet([{"from": 19, "to": 20}, {"from": 19, "to": 21}, {"from": 19, "to": 22}, {"from": 19, "to": 27}, {"from": 20, "to": 21}, {"from": 20, "to": 22}, {"from": 20, "to": 27}, {"from": 21, "to": 22}, {"from": 21, "to": 27}, {"from": 22, "to": 27}, {"from": 58, "to": 59}, {"from": 58, "to": 83}, {"from": 59, "to": 83}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

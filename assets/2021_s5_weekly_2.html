@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 4, "label": "gravit", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 5, "label": "tinkercad", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 12, "label": "3d design", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week2"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 4, "label": "gravit", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#e3342f", "id": 5, "label": "tinkercad", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#e3342f", "id": 12, "label": "3d design", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week2"}]);
                   edges = new vis.DataSet([{"from": 4, "to": 5}, {"from": 4, "to": 12}, {"from": 5, "to": 12}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

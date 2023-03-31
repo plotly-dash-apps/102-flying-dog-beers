@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 18, "label": "actuat", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 53, "label": "logic", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 73, "label": "trialerror", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#97c2fc", "id": 85, "label": "comput think", "shape": "dot", "size": 6, "title": "Week8"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#f6993f", "id": 18, "label": "actuat", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#f6993f", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#38c172", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#38c172", "id": 53, "label": "logic", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 73, "label": "trialerror", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week8"}, {"color": "#4dc0b5", "id": 85, "label": "comput think", "shape": "dot", "size": 6, "title": "Week8"}]);
                   edges = new vis.DataSet([{"from": 16, "to": 18}, {"from": 16, "to": 21}, {"from": 16, "to": 22}, {"from": 18, "to": 21}, {"from": 18, "to": 22}, {"from": 21, "to": 22}, {"from": 45, "to": 53}, {"from": 59, "to": 65}, {"from": 59, "to": 73}, {"from": 59, "to": 74}, {"from": 59, "to": 76}, {"from": 59, "to": 85}, {"from": 65, "to": 73}, {"from": 65, "to": 74}, {"from": 65, "to": 76}, {"from": 65, "to": 85}, {"from": 73, "to": 74}, {"from": 73, "to": 76}, {"from": 73, "to": 85}, {"from": 74, "to": 76}, {"from": 74, "to": 85}, {"from": 76, "to": 85}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

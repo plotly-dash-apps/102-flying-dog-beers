@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 1, "label": "lasercut", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 89, "label": "gear", "shape": "dot", "size": 6, "title": "Week4"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#e3342f", "id": 1, "label": "lasercut", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#3490dc", "id": 89, "label": "gear", "shape": "dot", "size": 6, "title": "Week4"}]);
                   edges = new vis.DataSet([{"from": 0, "to": 1}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

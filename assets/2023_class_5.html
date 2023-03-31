@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.9,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

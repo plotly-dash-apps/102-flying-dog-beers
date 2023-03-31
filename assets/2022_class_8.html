@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#97c2fc", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#97c2fc", "id": 34, "label": "led light", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#97c2fc", "id": 35, "label": "light sourc", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#97c2fc", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#97c2fc", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#97c2fc", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "student11"}]);
-                  edges = new vis.DataSet([{"from": 58, "to": 60}, {"from": 58, "to": 62}, {"from": 58, "to": 83}, {"from": 60, "to": 62}, {"from": 60, "to": 83}, {"from": 34, "to": 35}, {"from": 62, "to": 83}]);
+                  nodes = new vis.DataSet([{"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#4dc0b5", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "student1"}, {"color": "#f6993f", "id": 34, "label": "led light", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#f6993f", "id": 35, "label": "light sourc", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#38c172", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "student11"}, {"color": "#4dc0b5", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "student11"}]);
+                  edges = new vis.DataSet([{"from": 58, "hidden": true, "to": 60}, {"from": 58, "hidden": true, "to": 62}, {"from": 58, "hidden": true, "to": 83}, {"from": 60, "hidden": true, "to": 62}, {"from": 60, "hidden": true, "to": 83}, {"from": 34, "hidden": true, "to": 35}, {"from": 62, "hidden": true, "to": 83}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.9,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

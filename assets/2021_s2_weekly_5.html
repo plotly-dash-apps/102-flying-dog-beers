@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 28, "label": "servo", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 30, "label": "light sensor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#97c2fc", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week5"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#f6993f", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#f6993f", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#f6993f", "id": 28, "label": "servo", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#f6993f", "id": 30, "label": "light sensor", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#4dc0b5", "id": 65, "label": "debug", "shape": "dot", "size": 6, "title": "Week5"}, {"color": "#9561e2", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week5"}]);
                   edges = new vis.DataSet([{"from": 16, "to": 19}, {"from": 16, "to": 25}, {"from": 16, "to": 28}, {"from": 16, "to": 30}, {"from": 19, "to": 25}, {"from": 19, "to": 28}, {"from": 19, "to": 30}, {"from": 25, "to": 28}, {"from": 25, "to": 30}, {"from": 28, "to": 30}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

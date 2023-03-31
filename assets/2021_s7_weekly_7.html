@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 14, "label": "gogo", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 15, "label": "gogoboard", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#97c2fc", "id": 91, "label": "ramp", "shape": "dot", "size": 6, "title": "Week7"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 14, "label": "gogo", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#f6993f", "id": 15, "label": "gogoboard", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#ffed4a", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#4dc0b5", "id": 83, "label": "learn goal", "shape": "dot", "size": 6, "title": "Week7"}, {"color": "#3490dc", "id": 91, "label": "ramp", "shape": "dot", "size": 6, "title": "Week7"}]);
                   edges = new vis.DataSet([{"from": 14, "to": 15}, {"from": 58, "to": 83}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 4, "label": "gravit", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 24, "label": "temperatur", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 30, "label": "light sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 31, "label": "proxim sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 33, "label": "temperatur sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week4"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 4, "label": "gravit", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 16, "label": "sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 24, "label": "temperatur", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 30, "label": "light sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 31, "label": "proxim sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 33, "label": "temperatur sensor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week4"}]);
                   edges = new vis.DataSet([{"from": 16, "to": 24}, {"from": 16, "to": 30}, {"from": 16, "to": 31}, {"from": 16, "to": 33}, {"from": 24, "to": 30}, {"from": 24, "to": 31}, {"from": 24, "to": 33}, {"from": 30, "to": 31}, {"from": 30, "to": 33}, {"from": 31, "to": 33}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

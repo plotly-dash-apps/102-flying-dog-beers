@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#97c2fc", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#97c2fc", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#97c2fc", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#97c2fc", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week10"}]);
+                  nodes = new vis.DataSet([{"color": "#38c172", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#4dc0b5", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#4dc0b5", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#4dc0b5", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week10"}, {"color": "#9561e2", "id": 95, "label": "cardboard", "shape": "dot", "size": 6, "title": "Week10"}]);
                   edges = new vis.DataSet([{"from": 58, "to": 59}, {"from": 58, "to": 66}, {"from": 58, "to": 76}, {"from": 59, "to": 66}, {"from": 59, "to": 76}, {"from": 66, "to": 76}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

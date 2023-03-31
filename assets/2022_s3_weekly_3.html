@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 8, "label": "2d design", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 97, "label": "wood", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 98, "label": "wooden", "shape": "dot", "size": 6, "title": "Week3"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#e3342f", "id": 8, "label": "2d design", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#9561e2", "id": 97, "label": "wood", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#9561e2", "id": 98, "label": "wooden", "shape": "dot", "size": 6, "title": "Week3"}]);
                   edges = new vis.DataSet([{"from": 0, "to": 8}, {"from": 58, "to": 66}, {"from": 58, "to": 76}, {"from": 66, "to": 76}, {"from": 97, "to": 98}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,
