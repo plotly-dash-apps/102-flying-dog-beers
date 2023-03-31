@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 26, "label": "button", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 27, "label": "circuit", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 87, "label": "wheel", "shape": "dot", "size": 6, "title": "Week1"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 26, "label": "button", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 27, "label": "circuit", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#38c172", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#3490dc", "id": 87, "label": "wheel", "shape": "dot", "size": 6, "title": "Week1"}]);
                   edges = new vis.DataSet([{"from": 21, "to": 22}, {"from": 21, "to": 25}, {"from": 21, "to": 26}, {"from": 21, "to": 27}, {"from": 22, "to": 25}, {"from": 22, "to": 26}, {"from": 22, "to": 27}, {"from": 25, "to": 26}, {"from": 25, "to": 27}, {"from": 26, "to": 27}, {"from": 64, "to": 68}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

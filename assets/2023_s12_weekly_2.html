@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#97c2fc", "id": 82, "label": "learn process", "shape": "dot", "size": 6, "title": "Week2"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#4dc0b5", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#4dc0b5", "id": 74, "label": "trial", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#4dc0b5", "id": 82, "label": "learn process", "shape": "dot", "size": 6, "title": "Week2"}]);
                   edges = new vis.DataSet([{"from": 58, "to": 62}, {"from": 58, "to": 74}, {"from": 58, "to": 82}, {"from": 62, "to": 74}, {"from": 62, "to": 82}, {"from": 74, "to": 82}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

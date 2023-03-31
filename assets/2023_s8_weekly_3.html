@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 47, "label": "pseudocod", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 57, "label": "sound librari", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 63, "label": "redesign", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week3"}]);
+                  nodes = new vis.DataSet([{"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 47, "label": "pseudocod", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 57, "label": "sound librari", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 63, "label": "redesign", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week3"}]);
                   edges = new vis.DataSet([{"from": 43, "to": 44}, {"from": 43, "to": 47}, {"from": 43, "to": 57}, {"from": 44, "to": 47}, {"from": 44, "to": 57}, {"from": 47, "to": 57}, {"from": 62, "to": 63}, {"from": 62, "to": 71}, {"from": 63, "to": 71}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

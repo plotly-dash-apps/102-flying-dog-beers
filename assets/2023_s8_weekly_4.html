@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 14, "label": "gogo", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 15, "label": "gogoboard", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 87, "label": "wheel", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 91, "label": "ramp", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 92, "label": "simpl machin", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 97, "label": "wood", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#97c2fc", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week4"}]);
+                  nodes = new vis.DataSet([{"color": "#e3342f", "id": 0, "label": "laser ", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 14, "label": "gogo", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 15, "label": "gogoboard", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#f6993f", "id": 19, "label": "motor", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 59, "label": "test", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#4dc0b5", "id": 60, "label": "sketch", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#3490dc", "id": 87, "label": "wheel", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#3490dc", "id": 91, "label": "ramp", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#3490dc", "id": 92, "label": "simpl machin", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#9561e2", "id": 97, "label": "wood", "shape": "dot", "size": 6, "title": "Week4"}, {"color": "#9561e2", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week4"}]);
                   edges = new vis.DataSet([{"from": 14, "to": 15}, {"from": 14, "to": 19}, {"from": 15, "to": 19}, {"from": 59, "to": 60}, {"from": 87, "to": 91}, {"from": 87, "to": 92}, {"from": 91, "to": 92}, {"from": 97, "to": 99}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

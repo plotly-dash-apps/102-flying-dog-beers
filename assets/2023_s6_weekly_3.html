@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 54, "label": "p5js", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 55, "label": "p5", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#97c2fc", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week3"}]);
+                  nodes = new vis.DataSet([{"color": "#38c172", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 52, "label": "visual", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 54, "label": "p5js", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#38c172", "id": 55, "label": "p5", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week3"}, {"color": "#4dc0b5", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week3"}]);
                   edges = new vis.DataSet([{"from": 43, "to": 44}, {"from": 43, "to": 52}, {"from": 43, "to": 54}, {"from": 43, "to": 55}, {"from": 44, "to": 52}, {"from": 44, "to": 54}, {"from": 44, "to": 55}, {"from": 52, "to": 54}, {"from": 52, "to": 55}, {"from": 54, "to": 55}, {"from": 62, "to": 71}, {"from": 62, "to": 76}, {"from": 71, "to": 76}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

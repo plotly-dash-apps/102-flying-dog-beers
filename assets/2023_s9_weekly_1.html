@@ -88,7 +88,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": 20, "label": "batteri", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 26, "label": "button", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 78, "label": "disassembl", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 79, "label": "take apart", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 103, "label": "metal", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#97c2fc", "id": 115, "label": "screw", "shape": "dot", "size": 6, "title": "Week1"}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 20, "label": "batteri", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 21, "label": "electron", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 25, "label": "switch", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f6993f", "id": 26, "label": "button", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 71, "label": "fit", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 78, "label": "disassembl", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 79, "label": "take apart", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9561e2", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9561e2", "id": 103, "label": "metal", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f66d9b", "id": 115, "label": "screw", "shape": "dot", "size": 6, "title": "Week1"}]);
                   edges = new vis.DataSet([{"from": 20, "to": 21}, {"from": 20, "to": 22}, {"from": 20, "to": 25}, {"from": 20, "to": 26}, {"from": 21, "to": 22}, {"from": 21, "to": 25}, {"from": 21, "to": 26}, {"from": 22, "to": 25}, {"from": 22, "to": 26}, {"from": 25, "to": 26}, {"from": 62, "to": 64}, {"from": 62, "to": 68}, {"from": 62, "to": 71}, {"from": 62, "to": 78}, {"from": 62, "to": 79}, {"from": 64, "to": 68}, {"from": 64, "to": 71}, {"from": 64, "to": 78}, {"from": 64, "to": 79}, {"from": 68, "to": 71}, {"from": 68, "to": 78}, {"from": 68, "to": 79}, {"from": 71, "to": 78}, {"from": 71, "to": 79}, {"from": 78, "to": 79}, {"from": 99, "to": 103}]);
 
                   nodeColors = {};
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 30
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,
