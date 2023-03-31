@@ -80,7 +80,7 @@ keywords_group = keyword_category.iloc[:, 0].to_numpy()
 def aggregate_individual_knowledge_map(student_df, color_plate):
     nets = []
     for i in range(student_df.shape[0]):
-        net = Network(notebook=True, heading="Individual Knowledge Map Aggregate Week " + str(i+1))
+        net = Network(notebook=True)#, heading="Individual Knowledge Map Aggregate Week " + str(i+1))
         occurence = student_df.iloc[:(i+1)].sum()
         for n in range(i+1): 
             for j, value in enumerate(student_df.iloc[n]):
