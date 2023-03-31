@@ -122,15 +122,15 @@ indi_weekly_s10_2023 = weekly_individual_knowledge_map(year2023_df[9])
 indi_weekly_s11_2023 = weekly_individual_knowledge_map(year2023_df[10])
 indi_weekly_s12_2023 = weekly_individual_knowledge_map(year2023_df[11])
 
-indi_weekly_s12_2023[0].show("assets/2023_s12_weekly_1.html")
+indi_weekly_s1_2023[0].show("assets/2023_s1_weekly_1.html")
 
-indi_weekly_s12_2023[1].show("assets/2023_s12_weekly_2.html")
+indi_weekly_s1_2023[1].show("assets/2023_s1_weekly_2.html")
 
-indi_weekly_s12_2023[2].show("assets/2023_s12_weekly_3.html")
+indi_weekly_s1_2023[2].show("assets/2023_s1_weekly_3.html")
 
-indi_weekly_s12_2023[3].show("assets/2023_s12_weekly_4.html")
+indi_weekly_s1_2023[3].show("assets/2023_s1_weekly_4.html")
 
-indi_weekly_s12_2023[4].show("assets/2023_s12_weekly_5.html")
+indi_weekly_s1_2023[4].show("assets/2023_s1_weekly_5.html")
 
 
 
