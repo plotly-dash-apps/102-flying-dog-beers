@@ -215,6 +215,8 @@ sidebar = html.Div(
                           html.Hr(),
                           html.Hr(),
                           html.Hr(),
+        html.Hr(),
+        html.Hr(),
 
 
         dbc.Row(
@@ -256,6 +258,106 @@ dbc.Row(
     ],
 )
 
+html_graphs = html.Div(
+    [
+        dbc.Container(
+            [dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            html.P('Individual weekly keywords', className='text-center font-weight-bold',
+                                   style={'fontWeight': 'bold'}),
+                            html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
+                                        style={'height': '45vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5}),
+
+                    dbc.Col(
+                        [
+                            html.P('Individual aggregated weekly keywords', className='text-center font-weight-bold',
+                                   style={'fontWeight': 'bold'}),
+                            html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='100%', height='600',
+                                        style={'height': '45vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider2',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5}),
+
+                    dbc.Col(
+                        [
+                            html.P(' Weekly class collective keywords ', className='text-center font-weight-bold',
+                                   style={'fontWeight': 'bold', 'marginRight': '50px'}),
+                            html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='180%', height='800',
+                                        style={'height': '65vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider3',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '170%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 6}),
+
+                ], style={"height": "100vh"}
+            )
+
+            ],
+            fluid=True
+        )
+    ])
+
 # Define the App Layout
 app.layout = html.Div(
     [dbc.Container(
@@ -264,221 +366,10 @@ app.layout = html.Div(
          dbc.Row(
              [
                  dbc.Col(sidebar, width=3, className='bg-dark'),
-                 # dbc.Col(content, width=9)
-                 dbc.Col(
-                     [
-                         html.P('Individual weekly keywords', className='text-center font-weight-bold',style={'fontWeight': 'bold'}),
-                         html.Iframe(id='html-iframe', srcDoc=initial_html, width='95%', height='600',
-                                     style={'height': '45vh'}),
-
-                         dbc.Row([dbc.Col([html.Div([
-                            #html.Label('Select a week:', style={'fontSize': '20px'}),
-                             dcc.Slider(
-                                 id='myslider',
-                                 min=1,
-                                 max=10,
-                                 value=1,
-                                 step=1,
-                                 updatemode='drag',
-                                 marks={1: {'label': '1'}, 2: {'label': '2' }, 3: '3',4: '4', 5: '5', 6: '6',7: '7', 8: '8', 9: '9',10: '10'},
-tooltip={"placement": "bottom", "always_visible": True},included=False
-                             ),
-                             dbc.Label("Week", className="text-center w-100 mb-0",width='10%'),
-                         ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
-                                   #'color': '#000000',
-                                   'fontSize': '15px',
-                                   'padding': '5px'})
-                         ])]),
-
-                     ],width={"size": 4}),
-
-                 dbc.Col(
-                     [
-                         html.P('Individual aggregated weekly keywords', className='text-center font-weight-bold',style={'fontWeight': 'bold'}),
-                         html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='95%', height='600',
-                                     style={'height': '45vh'}),
-
-                         dbc.Row([dbc.Col([html.Div([
-                             # html.Label('Select a week:', style={'fontSize': '20px'}),
-                             dcc.Slider(
-                                 id='myslider2',
-                                 min=1,
-                                 max=10,
-                                 value=1,
-                                 step=1,
-                                 updatemode='drag',
-                                 marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
-                                        8: '8', 9: '9', 10: '10'},
-                                 tooltip={"placement": "bottom", "always_visible": True}, included=False
-                             ),
-                             dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
-                         ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
-                                   # 'color': '#000000',
-                                   'fontSize': '15px',
-                                   'padding': '5px'})
-                         ])]),
-
-                     ],width={"size": 4}),
-
-
-dbc.Col(
-                     [
-                         html.P(' Weekly class collective keywords ', className='text-center font-weight-bold',style={'fontWeight': 'bold'}),
-                         html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='85%', height='1000',
-                                     style={'height': '65vh'}),
-
-                         dbc.Row([dbc.Col([html.Div([
-                             # html.Label('Select a week:', style={'fontSize': '20px'}),
-                             dcc.Slider(
-                                 id='myslider3',
-                                 min=1,
-                                 max=10,
-                                 value=1,
-                                 step=1,
-                                 updatemode='drag',
-                                 marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
-                                        8: '8', 9: '9', 10: '10'},
-                                 tooltip={"placement": "bottom", "always_visible": True}, included=False
-                             ),
-                             dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
-                         ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
-                                   # 'color': '#000000',
-                                   'fontSize': '15px',
-                                   'padding': '5px'})
-                         ])]),
-
-                     ],width={"size": 6}),
-                 #dbc.Col(
-                     #[
-                         #html.P('Total class collective keywords', className='font-weight-bold'),
-                         #html.Iframe(id='html-iframe-3', srcDoc=initial_html_class, width='95%', height='600',
-                                     #style={'height': '45vh'})
-
-                     #])
-
-             ], style={"height": "100vh"}
-         )
-
-         #        dbc.Row(
-         #             [
-         #                dbc.Col(
-         #                    [ html.Hr(),
-         #                     html.P('keywords of the whole class'),
-         #                                      html.Div([
-         #                                           dcc.Graph(id='keywords', figure=fig)
-         #                                      ]), #md=10,
-
-         #                 ])
-         #         ],
-         #        style={"height": "50vh", 'margin': '8px'}
-         #    )
-         ],
-        fluid=True
-    )
+                 dbc.Col(html_graphs)])],
+        fluid=True)
     ])
 
-
-# Define the callbacks of year dropdown and weekly dropdown
-@app.callback(
-    Output('mydropdown', 'options'),
-    Input('yeardropdown', 'value'))
-def update_students(year):
-    if year == '2021':
-        options = [
-            {'label': 'Student 1', 'value': 'student 1'},
-            {'label': 'Student 2', 'value': 'student 2'},
-            {'label': 'Student 3', 'value': 'student 3'},
-            {'label': 'Student 4', 'value': 'student 4'},
-            {'label': 'Student 5', 'value': 'student 5'},
-            {'label': 'Student 6', 'value': 'student 6'},
-            {'label': 'Student 7', 'value': 'student 7'}
-        ]
-    elif year == '2022':
-        options = [
-            {'label': 'Student 1', 'value': 'Student 1'},
-            {'label': 'Student 2', 'value': 'Student 2'},
-            {'label': 'Student 3', 'value': 'Student 3'},
-            {'label': 'Student 4', 'value': 'Student 4'},
-            {'label': 'Student 5', 'value': 'Student 5'},
-            {'label': 'Student 6', 'value': 'Student 6'},
-            {'label': 'Student 7', 'value': 'Student 7'},
-            {'label': 'Student 8', 'value': 'Student 8'},
-            {'label': 'Student 9', 'value': 'Student 9'},
-            {'label': 'Student 10', 'value': 'Student 10'},
-            {'label': 'Student 11', 'value': 'Student 11'},
-            {'label': 'Student 12', 'value': 'Student 12'}
-        ]
-    elif year == '2023':
-        options = [
-            {'label': 'Student 1', 'value': 'student_1'},
-            {'label': 'Student 2', 'value': 'student_2'},
-            {'label': 'Student 3', 'value': 'student_3'},
-            {'label': 'Student 4', 'value': 'student_4'},
-            {'label': 'Student 5', 'value': 'student_5'},
-            {'label': 'Student 6', 'value': 'student_6'},
-            {'label': 'Student 7', 'value': 'student_7'},
-            {'label': 'Student 8', 'value': 'student_8'},
-            {'label': 'Student 9', 'value': 'student_9'},
-            {'label': 'Student 10', 'value': 'student_10'},
-            {'label': 'Student 11', 'value': 'student_11'},
-            {'label': 'Student 12', 'value': 'student_12'}
-        ]
-    else:
-        options = []
-    return options
-
-
-
-
-
-# Define the callbacks of year dropdown and aggregate  dropdown
-@app.callback(
-    Output('mydropdown2', 'options'),
-    Input('yeardropdown', 'value'))
-def update_students(year):
-    if year == '2021':
-        options = [
-            {'label': 'Student 1', 'value': 'option_a'},
-            {'label': 'Student 2', 'value': 'option_b'},
-            {'label': 'Student 3', 'value': 'option_c'},
-            {'label': 'Student 4', 'value': 'option_d'},
-            {'label': 'Student 5', 'value': 'option_e'},
-            {'label': 'Student 6', 'value': 'option_f'},
-            {'label': 'Student 7', 'value': 'option_g'}
-        ]
-    elif year == '2022':
-        options = [
-            {'label': 'Student 1', 'value': 'option_A'},
-            {'label': 'Student 2', 'value': 'option_B'},
-            {'label': 'Student 3', 'value': 'option_C'},
-            {'label': 'Student 4', 'value': 'option_D'},
-            {'label': 'Student 5', 'value': 'option_E'},
-            {'label': 'Student 6', 'value': 'option_F'},
-            {'label': 'Student 7', 'value': 'option_G'},
-            {'label': 'Student 8', 'value': 'option_H'},
-            {'label': 'Student 9', 'value': 'option_I'},
-            {'label': 'Student 10', 'value': 'option_J'},
-            {'label': 'Student 11', 'value': 'option_K'},
-            {'label': 'Student 12', 'value': 'option_L'}
-        ]
-    elif year == '2023':
-        options = [
-            {'label': 'Student 1', 'value': 'option A'},
-            {'label': 'Student 2', 'value': 'option B'},
-            {'label': 'Student 3', 'value': 'option C'},
-            {'label': 'Student 4', 'value': 'option D'},
-            {'label': 'Student 5', 'value': 'option E'},
-            {'label': 'Student 6', 'value': 'option F'},
-            {'label': 'Student 7', 'value': 'option G'},
-            {'label': 'Student 8', 'value': 'option H'},
-            {'label': 'Student 9', 'value': 'option I'},
-            {'label': 'Student 10', 'value': 'option J'},
-            {'label': 'Student 11', 'value': 'option K'},
-            {'label': 'Student 12', 'value': 'option L'}
-        ]
-    else:
-        options = []
-    return options
 
 # Define the callback function for Individual Weekly Graph
 @app.callback(
@@ -991,7 +882,7 @@ def update_output(yeardropdown,mydropdown,myslider):
     #elif value == 'option2':
         #return open('s2_weekly_network1.html', 'r').read()
     #elif value == 'option3':
-        #return open('s3_weekly_network1.html', 'r').read()
+        #return open('s3_weekly_network1.html', 'r').read(
 
 # Define the callback function for Individual Aggregate Graph
 @app.callback(
@@ -1587,8 +1478,5 @@ def update_output(yeardropdown1,myslider3):
         return open('assets/2023_class_4.html', 'r').read()
     elif yeardropdown1 == '2023' and myslider3 == 5:
         return open('assets/2023_class_5.html', 'r').read()
-
-
-
 if __name__ == "__main__":
-    app.run_server(port=8073)
+    app.run_server(port=8072)
