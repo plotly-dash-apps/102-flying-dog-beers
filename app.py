@@ -1591,3 +1591,4 @@ def update_output(yeardropdown1,myslider3):
 
 
 if __name__ == "__main__":
+    app.run_server(port=8073)
