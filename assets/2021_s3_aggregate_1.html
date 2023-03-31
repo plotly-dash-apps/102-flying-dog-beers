@@ -8,7 +8,7 @@
             
         
 <center>
-<h1></h1>
+<h1>Individual Knowledge Map Aggregate Week 1</h1>
 </center>
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
@@ -27,7 +27,7 @@
 
 
         <center>
-          <h1></h1>
+          <h1>Individual Knowledge Map Aggregate Week 1</h1>
         </center>
         <style type="text/css">
 
@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#F7FBFF", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#F7FBFF", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}]);
-                  edges = new vis.DataSet([{"from": 64, "to": 68}]);
+                  nodes = new vis.DataSet([{"color": "#4dc0b5", "id": 64, "label": "rethink", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}]);
+                  edges = new vis.DataSet([{"from": 64, "hidden": true, "to": 68}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

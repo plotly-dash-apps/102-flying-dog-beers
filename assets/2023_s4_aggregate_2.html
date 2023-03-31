@@ -8,7 +8,7 @@
             
         
 <center>
-<h1></h1>
+<h1>Individual Knowledge Map Aggregate Week 2</h1>
 </center>
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
@@ -27,7 +27,7 @@
 
 
         <center>
-          <h1></h1>
+          <h1>Individual Knowledge Map Aggregate Week 2</h1>
         </center>
         <style type="text/css">
 
@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#EFF3FF", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#EFF3FF", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#EFF3FF", "id": 59, "label": "test", "shape": "dot", "size": 9, "title": "Week1"}, {"color": "#EFF3FF", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#EFF3FF", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#EFF3FF", "id": 107, "label": "magnet", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#BDD7E7", "id": 8, "label": "2d design", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 38, "label": "measur", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 84, "label": "solv problem", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#BDD7E7", "id": 101, "label": "cotton", "shape": "dot", "size": 6, "title": "Week2"}]);
-                  edges = new vis.DataSet([{"from": 59, "to": 66}, {"from": 59, "to": 58}, {"from": 59, "to": 76}, {"from": 59, "to": 84}, {"from": 66, "to": 58}, {"from": 66, "to": 76}, {"from": 66, "to": 84}, {"from": 99, "to": 107}, {"from": 99, "to": 101}, {"from": 107, "to": 101}, {"from": 38, "to": 39}, {"from": 58, "to": 76}, {"from": 58, "to": 84}, {"from": 76, "to": 84}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#38c172", "id": 45, "label": "comput", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 59, "label": "test", "shape": "dot", "size": 9, "title": "Week1"}, {"color": "#4dc0b5", "id": 66, "label": "brainstorm", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9561e2", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9561e2", "id": 107, "label": "magnet", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#e8473f", "id": 8, "label": "2d design", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#ffef5a", "id": 38, "label": "measur", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#ffef5a", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#5ec4be", "id": 58, "label": "prototyp", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#5ec4be", "id": 76, "label": "iter", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#5ec4be", "id": 84, "label": "solv problem", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#9f6de8", "id": 101, "label": "cotton", "shape": "dot", "size": 6, "title": "Week2"}]);
+                  edges = new vis.DataSet([{"from": 59, "hidden": true, "to": 66}, {"from": 59, "hidden": true, "to": 58}, {"from": 59, "hidden": true, "to": 76}, {"from": 59, "hidden": true, "to": 84}, {"from": 66, "hidden": true, "to": 58}, {"from": 66, "hidden": true, "to": 76}, {"from": 66, "hidden": true, "to": 84}, {"from": 99, "hidden": true, "to": 107}, {"from": 99, "hidden": true, "to": 101}, {"from": 107, "hidden": true, "to": 101}, {"from": 38, "hidden": true, "to": 39}, {"from": 58, "hidden": true, "to": 76}, {"from": 58, "hidden": true, "to": 84}, {"from": 76, "hidden": true, "to": 84}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

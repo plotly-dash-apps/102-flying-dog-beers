@@ -8,7 +8,7 @@
             
         
 <center>
-<h1></h1>
+<h1>Individual Knowledge Map Aggregate Week 2</h1>
 </center>
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
@@ -27,7 +27,7 @@
 
 
         <center>
-          <h1></h1>
+          <h1>Individual Knowledge Map Aggregate Week 2</h1>
         </center>
         <style type="text/css">
 
@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#08306B", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 62, "label": "reflect", "shape": "dot", "size": 9, "title": "Week1"}, {"color": "#08306B", "id": 63, "label": "redesign", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08519C", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 47, "label": "pseudocod", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 49, "label": "graphic", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 50, "label": "graph", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#08519C", "id": 82, "label": "learn process", "shape": "dot", "size": 6, "title": "Week2"}]);
-                  edges = new vis.DataSet([{"from": 62, "to": 63}, {"from": 62, "to": 68}, {"from": 62, "to": 82}, {"from": 63, "to": 68}, {"from": 63, "to": 82}, {"from": 68, "to": 82}, {"from": 43, "to": 44}, {"from": 43, "to": 47}, {"from": 43, "to": 49}, {"from": 43, "to": 50}, {"from": 44, "to": 47}, {"from": 44, "to": 49}, {"from": 44, "to": 50}, {"from": 47, "to": 49}, {"from": 47, "to": 50}, {"from": 49, "to": 50}]);
+                  nodes = new vis.DataSet([{"color": "#f6993f", "id": 22, "label": "electr", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 9, "title": "Week1"}, {"color": "#4dc0b5", "id": 63, "label": "redesign", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#ffef5a", "id": 39, "label": "geometr", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#49c582", "id": 43, "label": "code", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#49c582", "id": 44, "label": "remix", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#49c582", "id": 47, "label": "pseudocod", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#49c582", "id": 49, "label": "graphic", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#49c582", "id": 50, "label": "graph", "shape": "dot", "size": 6, "title": "Week2"}, {"color": "#5ec4be", "id": 82, "label": "learn process", "shape": "dot", "size": 6, "title": "Week2"}]);
+                  edges = new vis.DataSet([{"from": 62, "hidden": true, "to": 63}, {"from": 62, "hidden": true, "to": 68}, {"from": 62, "hidden": true, "to": 82}, {"from": 63, "hidden": true, "to": 68}, {"from": 63, "hidden": true, "to": 82}, {"from": 68, "hidden": true, "to": 82}, {"from": 43, "hidden": true, "to": 44}, {"from": 43, "hidden": true, "to": 47}, {"from": 43, "hidden": true, "to": 49}, {"from": 43, "hidden": true, "to": 50}, {"from": 44, "hidden": true, "to": 47}, {"from": 44, "hidden": true, "to": 49}, {"from": 44, "hidden": true, "to": 50}, {"from": 47, "hidden": true, "to": 49}, {"from": 47, "hidden": true, "to": 50}, {"from": 49, "hidden": true, "to": 50}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,

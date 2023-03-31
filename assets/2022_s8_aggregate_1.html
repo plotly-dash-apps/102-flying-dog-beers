@@ -8,7 +8,7 @@
             
         
 <center>
-<h1></h1>
+<h1>Individual Knowledge Map Aggregate Week 1</h1>
 </center>
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
@@ -27,7 +27,7 @@
 
 
         <center>
-          <h1></h1>
+          <h1>Individual Knowledge Map Aggregate Week 1</h1>
         </center>
         <style type="text/css">
 
@@ -88,8 +88,8 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#08306B", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 70, "label": "repurpos", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 77, "label": "dissect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 79, "label": "take apart", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#08306B", "id": 116, "label": "mold", "shape": "dot", "size": 6, "title": "Week1"}]);
-                  edges = new vis.DataSet([{"from": 62, "to": 68}, {"from": 62, "to": 70}, {"from": 62, "to": 77}, {"from": 62, "to": 79}, {"from": 68, "to": 70}, {"from": 68, "to": 77}, {"from": 68, "to": 79}, {"from": 70, "to": 77}, {"from": 70, "to": 79}, {"from": 77, "to": 79}]);
+                  nodes = new vis.DataSet([{"color": "#4dc0b5", "id": 62, "label": "reflect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 68, "label": "repair", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 70, "label": "repurpos", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 77, "label": "dissect", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#4dc0b5", "id": 79, "label": "take apart", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#9561e2", "id": 99, "label": "plastic", "shape": "dot", "size": 6, "title": "Week1"}, {"color": "#f66d9b", "id": 116, "label": "mold", "shape": "dot", "size": 6, "title": "Week1"}]);
+                  edges = new vis.DataSet([{"from": 62, "hidden": true, "to": 68}, {"from": 62, "hidden": true, "to": 70}, {"from": 62, "hidden": true, "to": 77}, {"from": 62, "hidden": true, "to": 79}, {"from": 68, "hidden": true, "to": 70}, {"from": 68, "hidden": true, "to": 77}, {"from": 68, "hidden": true, "to": 79}, {"from": 70, "hidden": true, "to": 77}, {"from": 70, "hidden": true, "to": 79}, {"from": 77, "hidden": true, "to": 79}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -120,6 +120,14 @@
     },
     "physics": {
         "enabled": true,
+        "repulsion": {
+            "centralGravity": 1,
+            "damping": 0.09,
+            "nodeDistance": 100,
+            "springConstant": 0.05,
+            "springLength": 50
+        },
+        "solver": "repulsion",
         "stabilization": {
             "enabled": true,
             "fit": true,
