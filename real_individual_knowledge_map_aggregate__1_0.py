@@ -133,22 +133,31 @@ indi_aggregate_s12_2023 = aggregate_individual_knowledge_map(year2023_df[11],pal
 
 
 
-indi_aggregate_s7_2021[7].show("assets/2021_s7_aggregate_8.html")
-
-indi_aggregate_s6_2021[7].show("assets/2021_s6_aggregate_8.html")
-
-indi_aggregate_s5_2021[7].show("assets/2021_s5_aggregate_8.html")
-
-indi_aggregate_s4_2021[7].show("assets/2021_s4_aggregate_8.html")
-
-indi_aggregate_s3_2021[7].show("assets/2021_s3_aggregate_8.html")
-
-indi_aggregate_s2_2021[7].show("assets/2021_s2_aggregate_8.html")
-
-indi_aggregate_s1_2021[7].show("assets/2021_s1_aggregate_8.html")
 
 
 
+years = [2021, 2022, 2023]
+for year in years:
+    year_df = f"year{year}_df"
+    palette = f"palette_{year}"
+    if year == 2021:
+        for week in range(1, 9):
+            week_df = year_df[week - 1]
+            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
+            for j in range(1,8):
+                    indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate_{week}.html")
+    elif year == 2022:
+        for week in range(1, 11):
+            week_df = year_df[week - 1]
+            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
+            for j in range(1, 13):
+                    indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate_{week}.html")
+    elif year == 2023:
+        for week in range(1, 6):
+            week_df = year_df[week - 1]
+            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
+            for j in range(1, 13):
+                    indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate_{week}.html")
 
 
 

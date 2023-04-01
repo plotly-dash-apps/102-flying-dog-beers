@@ -132,7 +132,28 @@ indi_weekly_s12_2023[3].show('assets/2023_s12_weekly_4.html')
 
 indi_weekly_s12_2023[4].show('assets/2023_s12_weekly_5.html')
 
-
+years = [2021, 2022, 2023]
+for year in years:
+    year_df = f"year{year}_df"
+    palette = f"palette_{year}"
+    if year == 2021:
+        for week in range(1, 9):
+            week_df = year_df[week - 1]
+            indi_weekly = weekly_individual_knowledge_map(week_df, palette)
+            for j in range(1,8):
+            indi_weekly[j].show(f"assets/{year}_s{j}_weekly_{week}.html")
+    elif year == 2022:
+        for week in range(1, 11):
+            week_df = year_df[week - 1]
+            indi_weekly = weekly_individual_knowledge_map(week_df, palette)
+            for j in range(1, 13):
+                indi_weekly[j].show(f"assets/{year}_s{j}_weekly_{week}.html")
+    elif year == 2023:
+        for week in range(1, 6):
+            week_df = year_df[week - 1]
+            indi_weekly = weekly_individual_knowledge_map(week_df, palette)
+            for j in range(1, 13):
+                indi_weekly[j].show(f"assets/{year}_s{j}_weekly_{week}.html")
 
 
 
