@@ -323,7 +323,7 @@ html_graphs = html.Div(
                                 html.P('Collective Knowledge in the Class (weekly)',
                                        className='text-nowrap bd-highlight', style={'fontWeight': 'bold'}),
                                 className='d-flex justify-content-end',
-                                style={'text-align': 'right', 'margin-right': '-80px'}
+                                style={'text-align': 'right', 'margin-right': '-70px'}
                             ),
                             html.Iframe(id='html-iframe-4', srcDoc=initial_html_aggregate, width='170%', height='800',
                                         style={'height': '65vh'}),
