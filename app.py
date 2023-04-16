@@ -7,6 +7,7 @@ import pandas as pd
 import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
+import dash_html_components as html
 
 df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
 #fig = px.scatter(df, x='lasercut', y='lasercut',
@@ -14,7 +15,11 @@ df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
                  #log_x=True, size_max=60)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
+
+
 server = app.server
+
+
 navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
@@ -23,8 +28,8 @@ navbar = dbc.NavbarSimple(
             in_navbar=True,
             label="Menu📚",
             children=[
-                dbc.DropdownMenuItem("mainpage"),
-                #dbc.DropdownMenuItem("analysis"),
+                dbc.DropdownMenuItem("mainpage", href="/page-1"),
+                dbc.DropdownMenuItem("analysis", href="/page-2"),
                 #dbc.DropdownMenuItem(divider=True),
                 #dbc.DropdownMenuItem("conclusion"),
             ],
@@ -359,9 +364,9 @@ html_graphs = html.Div(
     ])
 
 # Define the App Layout
-app.layout = html.Div(
+page_1_layout = html.Div(
     [dbc.Container(
-        [dbc.Row(dbc.Col(navbar, width=30)),
+        [#dbc.Row(dbc.Col(navbar, width=30)),
          html.Hr(),
          dbc.Row(
              [
@@ -369,6 +374,127 @@ app.layout = html.Div(
                  dbc.Col(html_graphs)])],
         fluid=True)
     ])
+
+image1 = html.Img(src='/assets/samplepic1.jpg', alt='10projects of one student', style={'width': '160%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+image2 = html.Img(src='/assets/samplepic2.jpg', alt='10projects of one student', style={'height': '50%', 'width': '50%'})
+# define the layout for the second page
+
+sidebarpage2 = html.Div(
+    [
+        dbc.Row(
+            [
+                html.H5('Individual knowledge map',
+                        style={'margin-top': '12px', 'margin-left': '24px'})
+            ],
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+
+        dbc.Row(
+            [
+                html.Div([html.Hr(),
+                          html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='yeardropdown', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+                          html.P('Find your name to see your individual weekly keywords',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
+                                       #  {'label': 'student 2', 'value': 'optionB'},
+                                       # {'label': 'student 3', 'value': 'optionC'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+
+
+
+                          ])
+
+            ],
+)],style={"height": "100vh"}
+        )
+contentpage2 = html.Div(
+            [
+                html.H1("Sentiment Analysis"),
+                html.Div(
+                    [
+                        html.H3("discription"),
+                        html.P(" some content "),
+                        html.Img(src='/assets/samplepic3.png', style={"width": "30%"}),
+html.Hr(),
+                        html.Img(src='/assets/samplepic4.png', style={"width": "30%"}),
+                    ],
+                ),
+            ],
+            className="content",
+        )
+#page_2_layout = html.Div([sidebarpage2 , contentpage2])
+page_2_layout =html.Div(
+    [dbc.Container(
+        [#dbc.Row(dbc.Col(navbar, width=30)),
+         html.Hr(),
+         dbc.Row(
+             [
+                 dbc.Col(sidebarpage2 , width=3,className='bg-dark'),
+                 dbc.Col(contentpage2)])],
+        fluid=True)
+    ])
+#html.Div(
+   # [
+        #html.Div(
+           # [
+               # html.H2("Sidebar"),
+               # html.P("This is the sidebar."),
+           # ],
+           # className="sidebar",
+       # ),
+        #html.Div(
+            #[
+                #html.H1("Sentiment Analysis"),
+               # html.Div(
+                    #[
+                       # html.H3("discription"),
+                       # html.P(" some content "),
+                       # html.Img(src='/assets/samplepic3.png', style={"width": "50%"}),
+                       # html.Img(src='/assets/samplepic4.png', style={"width": "50%"}),
+                  #  ],
+               # ),
+           # ],
+            #className="content",
+        #),
+   # ],
+   # className="page",
+#)
+
+# create the callback for rendering the different pages
+@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
+def render_page_content(pathname):
+    if pathname == "/page-1":
+        return page_1_layout
+    elif pathname == "/page-2":
+        return page_2_layout
+    else:
+        return page_1_layout
+
+# define the app layout
+app.layout = html.Div(
+    [
+        dcc.Location(id="url"),
+        navbar,
+        html.Div(id="page-content"),
+    ]
+)
 
 # Define the callbacks of year dropdown and weekly dropdown
 @app.callback(
