@@ -77,7 +77,7 @@ keywords_group = keyword_category.iloc[:, 0].to_numpy()
 def aggregate_individual_knowledge_map(student_df, color_plate):
     nets = []
     for i in range(student_df.shape[0]):
-        net = Network(notebook=True, heading="Individual Knowledge Map Aggregate Week " + str(i + 1))
+        net = Network(notebook=True)#, heading="Individual Knowledge Map Aggregate Week " + str(i+1))
         occurence = student_df.iloc[:(i + 1)].sum()
         for n in range(i + 1):
             for j, value in enumerate(student_df.iloc[n]):
@@ -130,25 +130,9 @@ indi_aggregate_s10_2023 = aggregate_individual_knowledge_map(year2023_df[9], pal
 indi_aggregate_s11_2023 = aggregate_individual_knowledge_map(year2023_df[10], palette_2023)
 indi_aggregate_s12_2023 = aggregate_individual_knowledge_map(year2023_df[11], palette_2023)
 
-years = [2021, 2022, 2023]
-for year in years:
-    year_df = f"year{year}_df"
-    palette = f"palette_{year}"
-    if year == 2021:
-        for week in range(1, 9):
-            week_df = year_df[week - 1]
-            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
-            for j in range(1, 8):
-                indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate1_{week}.html")
-    elif year == 2022:
-        for week in range(1, 11):
-            week_df = year_df[week - 1]
-            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
-            for j in range(1, 13):
-                indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate1_{week}.html")
-    elif year == 2023:
-        for week in range(1, 6):
-            week_df = year_df[week - 1]
-            indi_aggregate = aggregate_individual_knowledge_map(week_df, palette)
-            for j in range(1, 13):
-                indi_aggregate[j].show(f"assets/{year}_s{j}_aggregate1_{week}.html")
+for i in range(len(indi_aggregate_s1_2023)):
+    indi_aggregate_s1_2023[i].show(f"assets/posi&nega/2023_s1_aggregate_{i+1}.html")
+
+
+
+
