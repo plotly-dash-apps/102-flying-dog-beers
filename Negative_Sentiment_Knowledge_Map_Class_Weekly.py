@@ -17,13 +17,13 @@ path = "/Users/stephanielin/Desktop/TLTLab/"
 # In[24]:
 
 
-keyword_category = pd.read_excel(path + "dictionary 2.0.xlsx",index_col=0).iloc[:,0:1]
+keyword_category = pd.read_excel( "assets/dictionary 2.0.xlsx",index_col=0).iloc[:,0:1]
 
 
 # In[25]:
 
 
-keywords = pd.read_excel(path + "dictionary 2.0.xlsx")["traget n-gram"].tolist()
+keywords = pd.read_excel("assets/dictionary 2.0.xlsx")["traget n-gram"].tolist()
 
 
 # In[26]:
@@ -32,7 +32,7 @@ keywords = pd.read_excel(path + "dictionary 2.0.xlsx")["traget n-gram"].tolist()
 negative_file_names_2021 = ['Student1_Negative_SA','Student2_Negative_SA','Student3_Negative_SA','Student4_Negative_SA','Student5_Negative_SA','Student6_Negative_SA','Student7_Negative_SA']
 year2021_df = []
 for i in range(len(negative_file_names_2021)):
-    temp_df = pd.read_csv(path + "Sentiment_Map/Negative_Map/2021/"+negative_file_names_2021[i]+".csv",index_col=0)
+    temp_df = pd.read_csv("Sentiment_Map/Negative_Map/2021/"+negative_file_names_2021[i]+".csv",index_col=0)
     temp_df.reset_index(drop=True, inplace=True)
     year2021_df.append(temp_df)
 
@@ -49,7 +49,7 @@ student_names_2021 = ['Student1','Student2','Student3','Student4','Student5','St
 negative_file_names_2022 = ['Student1_Negative_SA','Student2_Negative_SA','Student3_Negative_SA','Student4_Negative_SA','Student5_Negative_SA','Student6_Negative_SA','Student7_Negative_SA','Student8_Negative_SA','Student9_Negative_SA','Student10_Negative_SA','Student11_Negative_SA','Student12_Negative_SA']
 year2022_df = []
 for i in range(len(negative_file_names_2022)):
-    temp_df = pd.read_csv(path + "Sentiment_Map/Negative_Map/2022/"+negative_file_names_2022[i]+".csv",index_col=0)
+    temp_df = pd.read_csv("Sentiment_Map/Negative_Map/2022/"+negative_file_names_2022[i]+".csv",index_col=0)
     temp_df.reset_index(drop=True, inplace=True)
     year2022_df.append(temp_df)
 
@@ -66,7 +66,7 @@ student_names_2022 = ['Student1','Student2','Student3','Student4','Student5','St
 negative_file_names_2023 = ['Student1_Negative_SA','Student2_Negative_SA','Student3_Negative_SA','Student4_Negative_SA','Student5_Negative_SA','Student6_Negative_SA','Student7_Negative_SA','Student8_Negative_SA','Student9_Negative_SA','Student10_Negative_SA','Student11_Negative_SA','Student12_Negative_SA']
 year2023_df = []
 for i in range(len(negative_file_names_2023)):
-    temp_df = pd.read_csv(path + "Sentiment_Map/Negative_Map/2023/"+negative_file_names_2023[i]+".csv",index_col=0)
+    temp_df = pd.read_csv("Sentiment_Map/Negative_Map/2023/"+negative_file_names_2023[i]+".csv",index_col=0)
     temp_df.reset_index(drop=True, inplace=True)
     year2023_df.append(temp_df)
 
@@ -115,7 +115,7 @@ for i in keywords_group:
 def class_collective_negative_sensitive_map(class_df, student_names_year):
     nets = []
     for i in range(class_df[0].shape[0]):
-        net = Network(notebook=True, heading="Class Negative Sentiment Map Week " + str(i+1))
+        net = Network(notebook=True)
         student_names = []
         occurence = []
         
@@ -162,7 +162,7 @@ class_negative_map_2023 = class_collective_negative_sensitive_map(year2023_df,st
 # In[36]:
 
 
-class_negative_map_2023[0].show("social_network.html")
+#class_negative_map_2023[0].show("social_network.html")
 
 
 # In[37]:
@@ -171,7 +171,9 @@ class_negative_map_2023[0].show("social_network.html")
 class_negative_map_2023[0].nodes
 
 
-# In[ ]:
+
+for i in range(len(class_negative_map_2023)):
+    class_negative_map_2023[i].show(f"assets/class_negative_map_2023_{i+1}.html")
 
 
 

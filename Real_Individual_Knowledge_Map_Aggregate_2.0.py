@@ -130,9 +130,8 @@ indi_aggregate_s10_2023 = aggregate_individual_knowledge_map(year2023_df[9], pal
 indi_aggregate_s11_2023 = aggregate_individual_knowledge_map(year2023_df[10], palette_2023)
 indi_aggregate_s12_2023 = aggregate_individual_knowledge_map(year2023_df[11], palette_2023)
 
-for i in range(len(indi_aggregate_s1_2023)):
-    indi_aggregate_s1_2023[i].show(f"assets/posi&nega/2023_s1_aggregate_{i+1}.html")
 
 
-
-
+for s in range(1, 13):
+    for i, indi_aggregate in enumerate(globals()[f"indi_aggregate_s{s}_2023"]):
+        indi_aggregate.show(f"assets/2023_s{s}_aggregate_{i+1}.html")

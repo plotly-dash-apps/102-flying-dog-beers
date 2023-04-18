@@ -28,8 +28,8 @@ navbar = dbc.NavbarSimple(
             in_navbar=True,
             label="Menu📚",
             children=[
-                dbc.DropdownMenuItem("mainpage", href="/page-1"),
-                dbc.DropdownMenuItem("analysis", href="/page-2"),
+                dbc.DropdownMenuItem("Knowledge Maps", href="/page-1"),
+                dbc.DropdownMenuItem("Sentiment Analysis", href="/page-2"),
                 #dbc.DropdownMenuItem(divider=True),
                 #dbc.DropdownMenuItem("conclusion"),
             ],
@@ -124,6 +124,8 @@ content = html.Div(id="page-content")
 # Define the initial HTML content to display in the Iframe component
 initial_html_aggregate = open('assets/2021_s1_aggregate_1.html', 'r').read()
 initial_html_aggregate1 = open('assets/2021_s1_aggregate_1.html', 'r').read()
+initial_html_posi= open('assets/class_positive_map_2021_1.html', 'r').read()
+initial_html_nega= open('assets/class_negative_map_2021_1.html', 'r').read()
 
 with open('assets/2021_s2_aggregate_1.html', 'r') as f:
     second_html_aggregate = f.read()
@@ -389,7 +391,7 @@ sidebarpage2 = html.Div(
     [
         dbc.Row(
             [
-                html.H5('Individual knowledge map',
+                html.H5('Class collective sentiment analysis map',
                         style={'margin-top': '12px', 'margin-left': '24px'})
             ],
             style={"height": "5vh"},
@@ -402,22 +404,14 @@ sidebarpage2 = html.Div(
                           html.P('Select a year first',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
-                          dcc.Dropdown(id='yeardropdown', options=[{'label': '2021', 'value': '2021'},
+                          dcc.Dropdown(id='yeardropdown2', options=[{'label': '2021', 'value': '2021'},
                                                                     {'label': '2022', 'value': '2022'},
                                                                     {'label': '2023', 'value': '2023'}],
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
-                          html.P('Find your name to see your individual weekly keywords',
-                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
-                                 className='bg-dark text-white'),
-                          dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
-                                       #  {'label': 'student 2', 'value': 'optionB'},
-                                       # {'label': 'student 3', 'value': 'optionC'}],
-                                       multi=False,
-                                       style={'width': '220px', 'color': '#000000'}
-                                       ),
+
 
                           #html.P('Find your name to see your individual aggregated keywords',
                                  #style={'margin-top': '16px', 'margin-bottom': '4px'},
@@ -460,7 +454,7 @@ sidebarpage2 = html.Div(
 
         dbc.Row(
             [
-                html.H5('Collective knowledge map',
+                html.H5('Sentiment Analysis comparison between students and projects',
                         style={'margin-top': '12px', 'margin-left': '24px'})
             ],
             style={"height": "5vh"},
@@ -478,7 +472,7 @@ dbc.Row(
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
-                html.P('Find your name to see your individual weekly keywords',
+                html.P('Find your name to see ',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
                           dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
@@ -517,13 +511,13 @@ html_graphs2 = html.Div(
                         [
                             html.P('Maps for positive sentiment analysis score', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
-                            html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
+                            html.Iframe(id='html-iframe-5', srcDoc=initial_html_posi, width='100%', height='600',
                                         style={'height': '45vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
                                 dcc.Slider(
-                                    id='myslider',
+                                    id='myslider4',
                                     min=1,
                                     max=10,
                                     value=1,
@@ -546,13 +540,13 @@ html_graphs2 = html.Div(
                         [
                             html.P('Maps for negative sentiment analysis score', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
-                            html.Iframe(id='html-iframe-2', src='assets/samplepic3.png', width='100%', height='600',
+                            html.Iframe(id='html-iframe-6', src=initial_html_nega, width='100%', height='600',
                                         style={'height': '45vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
                                 dcc.Slider(
-                                    id='myslider2',
+                                    id='myslider5',
                                     min=1,
                                     max=10,
                                     value=1,
@@ -578,13 +572,13 @@ html_graphs2 = html.Div(
                                        className='fs-6 text-center font-weight-bold',
                                        style={'fontWeight': 'bold'})
                             ),
-                            html.Iframe(id='html-iframe-4', src='assets/samplepic4.png', width='100%', height='600',
+                            html.Iframe(id='html-iframe-7', src='assets/samplepic4.png', width='100%', height='600',
                                         style={'height': '65vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
                                 dcc.Slider(
-                                    id='myslider3',
+                                    id='myslider6',
                                     min=1,
                                     max=10,
                                     value=1,
@@ -609,13 +603,13 @@ html_graphs2 = html.Div(
                                        className='fs-6 text-center font-weight-bold',
                                        style={'fontWeight': 'bold'})
                             ),
-                            html.Iframe(id='html-iframe-5', src='assets/samplepic3.png', width='100%', height='600',
+                            html.Iframe(id='html-iframe-8', src='assets/samplepic3.png', width='100%', height='600',
                                         style={'height': '65vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
                                 dcc.Slider(
-                                    id='myslider4',
+                                    id='myslider7',
                                     min=1,
                                     max=10,
                                     value=1,
@@ -720,6 +714,7 @@ def update_students(year):
     else:
         options = []
     return options
+
 
 
 
@@ -1856,5 +1851,128 @@ def update_output(yeardropdown1,myslider3):
         return open('assets/2023_class_4.html', 'r').read()
     elif yeardropdown1 == '2023' and myslider3 == 5:
         return open('assets/2023_class_5.html', 'r').read()
+
+
+# Define the callback function for positive
+@app.callback(
+    Output('html-iframe-5', 'srcDoc'),
+    [Input('yeardropdown2', 'value'),Input('myslider4', 'value')]
+    #[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
+)
+
+def update_output(yeardropdown2,myslider4):
+    # Define the HTML content to display based on the dropdown menu
+    #2021
+    if yeardropdown2 == '2021' and myslider4 ==1:
+        return open('assets/class_positive_map_2021_1.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 ==2:
+        return open('assets/class_positive_map_2021_2.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 3:
+        return open('assets/class_positive_map_2021_3.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 4:
+        return open('assets/class_positive_map_2021_4.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 5:
+        return open('assets/class_positive_map_2021_5.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 6:
+        return open('assets/class_positive_map_2021_6.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 7:
+        return open('assets/class_positive_map_2021_7.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider4 == 8:
+        return open('assets/class_positive_map_2021_8.html', 'r').read()
+    #2022
+    if yeardropdown2 == '2022'and myslider4 ==1:
+        return open('assets/class_positive_map_2022_1.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 ==2:
+        return open('assets/class_positive_map_2022_2.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 3:
+        return open('assets/class_positive_map_2022_3.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 4:
+        return open('assets/class_positive_map_2022_4.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 5:
+        return open('assets/class_positive_map_2022_5.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 6:
+        return open('assets/class_positive_map_2022_6.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 7:
+        return open('assets/class_positive_map_2022_7.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 8:
+        return open('assets/class_positive_map_2022_8.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 9:
+        return open('assets/class_positive_map_2022_9.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider4 == 10:
+        return open('assets/class_positive_map_2022_10.html', 'r').read()
+
+        # 2023
+    if yeardropdown2 == '2023'and myslider4 ==1:
+        return open('assets/class_positive_map_2023_1.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider4 ==2:
+        return open('assets/class_positive_map_2023_2.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider4 == 3:
+        return open('assets/class_positive_map_2023_3.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider4 == 4:
+        return open('assets/class_positive_map_2023_4.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider4 == 5:
+        return open('assets/class_positive_map_2023_5.html', 'r').read()
+
+
+# Define the callback function for negative
+@app.callback(
+    Output('html-iframe-6', 'srcDoc'),
+    [Input('yeardropdown2', 'value'),Input('myslider5', 'value')]
+    #[Input('yeardropdown', 'value'), Input('mydropdown', 'value'), Input('myslider2', 'value')]
+)
+
+def update_output(yeardropdown2,myslider5):
+    # Define the HTML content to display based on the dropdown menu
+    #2021
+    if yeardropdown2 == '2021' and myslider5 ==1:
+        return open('assets/class_negative_map_2021_1.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 ==2:
+        return open('assets/class_negative_map_2021_2.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 3:
+        return open('assets/class_negative_map_2021_3.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 4:
+        return open('assets/class_negative_map_2021_4.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 5:
+        return open('assets/class_negative_map_2021_5.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 6:
+        return open('assets/class_negative_map_2021_6.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 7:
+        return open('assets/class_negative_map_2021_7.html', 'r').read()
+    elif yeardropdown2 == '2021' and myslider5 == 8:
+        return open('assets/class_negative_map_2021_8.html', 'r').read()
+    #2022
+    if yeardropdown2 == '2022'and myslider5 ==1:
+        return open('assets/class_negative_map_2022_1.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 ==2:
+        return open('assets/class_negative_map_2022_2.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 3:
+        return open('assets/class_negative_map_2022_3.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 4:
+        return open('assets/class_negative_map_2022_4.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 5:
+        return open('assets/class_negative_map_2022_5.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 6:
+        return open('assets/class_negative_map_2022_6.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 7:
+        return open('assets/class_negative_map_2022_7.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 8:
+        return open('assets/class_negative_map_2022_8.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 9:
+        return open('assets/class_negative_map_2022_9.html', 'r').read()
+    elif yeardropdown2 == '2022' and myslider5 == 10:
+        return open('assets/class_negative_map_2022_10.html', 'r').read()
+
+        # 2023
+    if yeardropdown2 == '2023'and myslider5 ==1:
+        return open('assets/class_negative_map_2023_1.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider5 ==2:
+        return open('assets/class_negative_map_2023_2.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider5 == 3:
+        return open('assets/class_negative_map_2023_3.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider5 == 4:
+        return open('assets/class_negative_map_2023_4.html', 'r').read()
+    elif yeardropdown2 == '2023' and myslider5 == 5:
+        return open('assets/class_negative_map_2023_5.html', 'r').read()
+
 if __name__ == "__main__":
     app.run_server(port=8072)
