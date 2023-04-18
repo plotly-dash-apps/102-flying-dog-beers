@@ -377,11 +377,11 @@ page_1_layout = html.Div(
         fluid=True)
     ])
 
-image1 = html.Img(src='/assets/samplepic1.jpg', alt='10projects of one student', style={'width': '160%', 'margin': '20px', 'margin-top': '20px',
+image1 = html.Img(src='/assets/samplepic3.jpg', alt='10projects of one student', style={'width': '160%', 'margin': '20px', 'margin-top': '20px',
                                       # 'color': '#000000',
                                       'fontSize': '15px',
                                       'padding': '5px'})
-image2 = html.Img(src='/assets/samplepic2.jpg', alt='10projects of one student', style={'height': '50%', 'width': '50%'})
+image2 = html.Img(src='/assets/samplepic4.jpg', alt='10projects of one student', style={'height': '50%', 'width': '50%'})
 # define the layout for the second page
 
 # Define the Sidebar
@@ -478,6 +478,15 @@ dbc.Row(
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
+                html.P('Find your name to see your individual weekly keywords',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
+                                       #  {'label': 'student 2', 'value': 'optionB'},
+                                       # {'label': 'student 3', 'value': 'optionC'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
 
 
                           ])
@@ -506,7 +515,7 @@ html_graphs2 = html.Div(
                 [
                     dbc.Col(
                         [
-                            html.P('Individual Key Concepts (weekly)', className='fs-6 text-center font-weight-bold',
+                            html.P('Maps for positive sentiment analysis score', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -535,9 +544,9 @@ html_graphs2 = html.Div(
 
                     dbc.Col(
                         [
-                            html.P('Individual Key Concepts (aggregated)', className='fs-6 text-center font-weight-bold',
+                            html.P('Maps for negative sentiment analysis score', className='fs-6 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
-                            html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='100%', height='600',
+                            html.Iframe(id='html-iframe-2', src='assets/samplepic3.png', width='100%', height='600',
                                         style={'height': '45vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
@@ -565,11 +574,11 @@ html_graphs2 = html.Div(
                     dbc.Col(
                         [
                             html.Div(
-                                html.P('Collective Knowledge in the Class (weekly)',
+                                html.P('Sentiment Analysis of one student on different projects',
                                        className='fs-6 text-center font-weight-bold',
                                        style={'fontWeight': 'bold'})
                             ),
-                            html.Iframe(id='html-iframe-4', srcDoc=initial_html_class, width='100%', height='600',
+                            html.Iframe(id='html-iframe-4', src='assets/samplepic4.png', width='100%', height='600',
                                         style={'height': '65vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
@@ -596,11 +605,11 @@ html_graphs2 = html.Div(
                     dbc.Col(
                         [
                             html.Div(
-                                html.P('Collective Knowledge in the Class (SA)',
+                                html.P('Sentiment Analysis of all student on one projects',
                                        className='fs-6 text-center font-weight-bold',
                                        style={'fontWeight': 'bold'})
                             ),
-                            html.Iframe(id='html-iframe-5', srcDoc=initial_html_aggregate1, width='100%', height='600',
+                            html.Iframe(id='html-iframe-5', src='assets/samplepic3.png', width='100%', height='600',
                                         style={'height': '65vh'}),
 
                             dbc.Row([dbc.Col([html.Div([
