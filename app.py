@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
-import dash_html_components as html
+from dash import html
 
 df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
 #fig = px.scatter(df, x='lasercut', y='lasercut',
@@ -123,6 +123,7 @@ div6 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s1_aggregate_1.h
 content = html.Div(id="page-content")
 # Define the initial HTML content to display in the Iframe component
 initial_html_aggregate = open('assets/2021_s1_aggregate_1.html', 'r').read()
+initial_html_aggregate1 = open('assets/2021_s1_aggregate_1.html', 'r').read()
 
 with open('assets/2021_s2_aggregate_1.html', 'r') as f:
     second_html_aggregate = f.read()
@@ -144,6 +145,7 @@ with open('assets/2022_class_1.html', 'r') as f:
 with open('assets/2023_class_1.html', 'r') as f:
     third_html_class = f.read()
 
+# Define the Sidebar
 # Define the Sidebar
 sidebar = html.Div(
     [
@@ -382,6 +384,7 @@ image1 = html.Img(src='/assets/samplepic1.jpg', alt='10projects of one student',
 image2 = html.Img(src='/assets/samplepic2.jpg', alt='10projects of one student', style={'height': '50%', 'width': '50%'})
 # define the layout for the second page
 
+# Define the Sidebar
 sidebarpage2 = html.Div(
     [
         dbc.Row(
@@ -416,67 +419,231 @@ sidebarpage2 = html.Div(
                                        style={'width': '220px', 'color': '#000000'}
                                        ),
 
+                          #html.P('Find your name to see your individual aggregated keywords',
+                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 #className='bg-dark text-white'),
+                          #dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
+                                       #      {'label': 'student 2', 'value': 'optionB'},
+                                       #     {'label': 'student 3', 'value': 'optionC'}],
+                                       #multi=False,
+                                       #style={'width': '220px', 'color': '#000000'}
+                                       #),
 
 
 
+
+                          #html.P('See class collectives map',
+                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
+                                 #className='bg-dark text-white'),
+                          #dcc.Dropdown(id='mydropdown3', options=[{'label': '2021', 'value': '2021'},
+                                                                  #{'label': '2022', 'value': '2022'},
+                                                                  #{'label': '2023', 'value': '2023'}
+                                                                  #],
+                                       #multi=False,
+                                       #style={'width': '220px', 'color': '#000000'}
+                                       #),
+                          # html.Button(id='my-button', n_clicks=0, children='apply',
+                           #style={'margin-top': '16px'},
+                          #className='bg-dark text-white'),
+                          #html.Hr()
                           ])
 
             ],
-)],style={"height": "100vh"}
-        )
-contentpage2 = html.Div(
+
+
+
+            style={'height': '40vh', 'margin': '10px', 'display': 'flex'}),
+
+                          html.Hr(style={ 'margin': '70px 0'}),
+
+
+
+        dbc.Row(
             [
-                html.H1("Sentiment Analysis"),
-                html.Div(
-                    [
-                        html.H3("discription"),
-                        html.P(" some content "),
-                        html.Img(src='/assets/samplepic3.png', style={"width": "30%"}),
-html.Hr(),
-                        html.Img(src='/assets/samplepic4.png', style={"width": "30%"}),
-                    ],
-                ),
+                html.H5('Collective knowledge map',
+                        style={'margin-top': '12px', 'margin-left': '24px'})
             ],
-            className="content",
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+dbc.Row(
+            [
+                html.Div([html.Hr(),
+                          html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='bg-dark text-white'),
+                          dcc.Dropdown(id='yeardropdown1', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+
+                          ])
+            ],
+
+
+
+            style={'height': '80vh', 'margin': '10px', 'display': 'flex'}),
+html.Hr(style={ 'margin': '20px 0'}),
+
+
+        # dbc.Row(
+        # [
+        # html.P('Brief instruction: xxxxxx', className='bg-dark text-white')
+        # ],
+        # style={"height": "45vh", 'margin': '8px', 'display': 'flex'}
+        # ),
+        # html.Div(id='my-output')
+    ],
+)
+
+html_graphs2 = html.Div(
+    [
+        dbc.Container(
+            [dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            html.P('Individual Key Concepts (weekly)', className='fs-6 text-center font-weight-bold',
+                                   style={'fontWeight': 'bold'}),
+                            html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
+                                        style={'height': '45vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5}),
+
+                    dbc.Col(
+                        [
+                            html.P('Individual Key Concepts (aggregated)', className='fs-6 text-center font-weight-bold',
+                                   style={'fontWeight': 'bold'}),
+                            html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='100%', height='600',
+                                        style={'height': '45vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider2',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5}),
+#p-2 align-items-stretch text-end fs-6 font-weight-bold
+                    dbc.Col(
+                        [
+                            html.Div(
+                                html.P('Collective Knowledge in the Class (weekly)',
+                                       className='fs-6 text-center font-weight-bold',
+                                       style={'fontWeight': 'bold'})
+                            ),
+                            html.Iframe(id='html-iframe-4', srcDoc=initial_html_class, width='100%', height='600',
+                                        style={'height': '65vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider3',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5}),
+                    dbc.Col(
+                        [
+                            html.Div(
+                                html.P('Collective Knowledge in the Class (SA)',
+                                       className='fs-6 text-center font-weight-bold',
+                                       style={'fontWeight': 'bold'})
+                            ),
+                            html.Iframe(id='html-iframe-5', srcDoc=initial_html_aggregate1, width='100%', height='600',
+                                        style={'height': '65vh'}),
+
+                            dbc.Row([dbc.Col([html.Div([
+                                # html.Label('Select a week:', style={'fontSize': '20px'}),
+                                dcc.Slider(
+                                    id='myslider4',
+                                    min=1,
+                                    max=10,
+                                    value=1,
+                                    step=1,
+                                    updatemode='drag',
+                                    marks={1: {'label': '1'}, 2: {'label': '2'}, 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                                           8: '8', 9: '9', 10: '10'},
+                                    tooltip={"placement": "bottom", "always_visible": True}, included=False
+                                ),
+                                dbc.Label("Week", className="text-center w-100 mb-0", width='10%'),
+                            ], style={'width': '85%', 'margin': '20px', 'margin-top': '20px',
+                                      # 'color': '#000000',
+                                      'fontSize': '15px',
+                                      'padding': '5px'})
+                            ])]),
+
+                        ], width={"size": 5})
+
+                ], style={"height": "100vh"}
+            )
+
+            ],
+            fluid=True
         )
-#page_2_layout = html.Div([sidebarpage2 , contentpage2])
-page_2_layout =html.Div(
+    ])
+
+# Define the App Layout
+page_2_layout = html.Div(
     [dbc.Container(
         [#dbc.Row(dbc.Col(navbar, width=30)),
          html.Hr(),
          dbc.Row(
              [
-                 dbc.Col(sidebarpage2 , width=3,className='bg-dark'),
-                 dbc.Col(contentpage2)])],
+                 dbc.Col(sidebarpage2, width=3,className='bg-dark'),
+                 dbc.Col(html_graphs2)])],
         fluid=True)
     ])
-#html.Div(
-   # [
-        #html.Div(
-           # [
-               # html.H2("Sidebar"),
-               # html.P("This is the sidebar."),
-           # ],
-           # className="sidebar",
-       # ),
-        #html.Div(
-            #[
-                #html.H1("Sentiment Analysis"),
-               # html.Div(
-                    #[
-                       # html.H3("discription"),
-                       # html.P(" some content "),
-                       # html.Img(src='/assets/samplepic3.png', style={"width": "50%"}),
-                       # html.Img(src='/assets/samplepic4.png', style={"width": "50%"}),
-                  #  ],
-               # ),
-           # ],
-            #className="content",
-        #),
-   # ],
-   # className="page",
-#)
-
 # create the callback for rendering the different pages
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
