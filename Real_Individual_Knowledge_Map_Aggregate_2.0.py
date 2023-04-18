@@ -135,3 +135,9 @@ indi_aggregate_s12_2023 = aggregate_individual_knowledge_map(year2023_df[11], pa
 for s in range(1, 13):
     for i, indi_aggregate in enumerate(globals()[f"indi_aggregate_s{s}_2023"]):
         indi_aggregate.show(f"assets/2023_s{s}_aggregate_{i+1}.html")
+for s in range(1, 13):
+    for i, indi_aggregate in enumerate(globals()[f"indi_aggregate_s{s}_2022"]):
+        indi_aggregate.show(f"assets/2022_s{s}_aggregate_{i+1}.html")
+for s in range(1, 8):
+    for i, indi_aggregate in enumerate(globals()[f"indi_aggregate_s{s}_2021"]):
+        indi_aggregate.show(f"assets/2021_s{s}_aggregate_{i+1}.html")
