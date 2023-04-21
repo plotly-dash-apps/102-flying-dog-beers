@@ -4,9 +4,8 @@ from dash import html
 from dash import dcc
 import pandas as pd
 #import numpy as np
-import plotly.express as px
+#import plotly.express as px
 from dash.dependencies import Input, Output, State
-import dash_daq as daq
 from dash import html
 
 
@@ -100,7 +99,7 @@ with open('assets/2021_s3_aggregate_1.html', 'r') as f:
 div7 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_class_1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 div8 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_class_1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
 div9 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_class_1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-content = html.Div(id="page-content")
+#content = html.Div(id="page-content")
 # Define the initial HTML content to display in the Iframe component
 initial_html_class = open('assets/2021_class_1.html', 'r').read()
 
@@ -648,21 +647,8 @@ page_2_layout = html.Div(
     ],
     style={'background': '#f8f9fa'}
 )
-@app.callback(
-    Output('message-list', 'children'),
-    Input('submit-button', 'n_clicks'),
-    State('message-input', 'value'),
-    State('message-list', 'children')
-)
-def update_messages(n_clicks, input_value, current_messages):
-    if not input_value:
-        return current_messages
-    response = send_message(input_value)
-    if response.get('success'):
-        message_item = html.Li(input_value, className="message")
-        current_messages.append(message_item)
-        return current_messages
-    return current_messages
+
+
 
 
 
