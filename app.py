@@ -8,107 +8,94 @@ import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
 from dash import html
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+import requests
+
+def send_message(message):
+    url = 'https://tltl-knowledgemap-demo.herokuapp.com/'
+    data = {'text': message}
+    response = requests.post(url, json=data)
+    return response.json()
+
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///messages.db'
+db = SQLAlchemy(app)
+
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(1000), nullable=False)
+
+
+@app.route('/messages', methods=['POST'])
+def post_message():
+    text = request.json.get('text', '')
+    message = Message(text=text)
+    db.session.add(message)
+    db.session.commit()
+    message_item = html.Li(message.text, className="message")
+    return jsonify({'success': True, 'message': str(message_item)})
+
+
 
 df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
-#fig = px.scatter(df, x='lasercut', y='lasercut',
-                #color='lasercut', hover_name='lasercut',
-                 #log_x=True, size_max=60)
+animated_title_style = {
+    "font-size": "2rem",
+    "font-weight": "bold",
+    "color": "#fff",
+    "text-shadow": "1px 1px 3px #333",
+    "margin-left": "2rem",  # Add margin to move the title to the right
+}
 
-app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
 
 
-server = app.server
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 
 
-navbar = dbc.NavbarSimple(
-    children=[
-        dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
-        dbc.DropdownMenu(
-            nav=True,
-            in_navbar=True,
-            label="Menu📚",
-            children=[
-                dbc.DropdownMenuItem("Knowledge Maps", href="/page-1"),
-                dbc.DropdownMenuItem("Sentiment Analysis", href="/page-2"),
-                #dbc.DropdownMenuItem(divider=True),
-                #dbc.DropdownMenuItem("conclusion"),
+
+navbar_style = {
+    "box-shadow": "0 0 10px rgba(0, 0, 0, 0.3)",
+}
+
+navbar = dbc.Navbar(
+    [
+        html.A(
+            "Knowledge Maps for Making",
+            className="navbar-brand text-black",
+            style={
+                "font-size": "2.5rem",
+                "font-weight": "bold",
+                "color": "#fff",
+                "margin-left": "2rem"
+            }
+        ),
+        dbc.Nav(
+            [
+                dbc.NavItem(dbc.NavLink("Knowledge Maps/Mainpage", href="/page-1")),
+                dbc.NavItem(dbc.NavLink("Sentiment Analysis", href="/page-2")),
+                dbc.NavItem(dbc.NavLink("Feedback/Message board ", href="/page-3")),
+                dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
+
             ],
+            className="ml-auto",
+            navbar=True,
         ),
     ],
-    brand="Knowledge Maps for Making",
-    brand_href="#",
+    color="light",
+    dark=False,
     sticky="top",
-className="navbar navbar-expand-sm bg-dark .text-white navbar-dark sticky-top" ,
+    style=navbar_style,
+    className="navbar-custom"
 )
-# Individual Weekly Graph
-div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/s1_weekly_network1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("assets/s2_weekly_network1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("assets/s3_weekly_network1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-# Individual Weekly Graph
-div1 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s1_weekly_1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div2 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s2_weekly_1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div3 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s3_weekly_1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div11 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s4_weekly_1.html"), id="graph4")] )
-div12 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s5_weekly_1.html"), id="graph5")] )
-div13 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s6_weekly_1.html"), id="graph6")] )
-div14 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s7_weekly_1.html"), id="graph7")] )
-div15 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s1_weekly_1.html"), id="2022_graph1")] )
-div16 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s2_weekly_1.html"), id="2022_graph2")] )
-div17 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s3_weekly_1.html"), id="2022_graph3")] )
-div18 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s4_weekly_1.html"), id="2022_graph4")] )
-div19 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s5_weekly_1.html"), id="2022_graph5")] )
-div20 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s6_weekly_1.html"), id="2022_graph6")] )
-div21 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s7_weekly_1.html"), id="2022_graph7")] )
-div22 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s8_weekly_1.html"), id="2022_graph8")] )
-div23 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s9_weekly_1.html"), id="2022_graph9")] )
-div24 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s10_weekly_1.html"), id="2022_graph10")] )
-div25 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s11_weekly_1.html"), id="2022_graph11")] )
-div26 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s12_weekly_1.html"), id="2022_graph12")] )
-div27 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s1_weekly_1.html"), id="2023_graph1")] )
-div28 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s2_weekly_1.html"), id="2023_graph2")] )
-div29 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s3_weekly_1.html"), id="2023_graph3")] )
-div30 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s4_weekly_1.html"), id="2023_graph4")] )
-div31 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s5_weekly_1.html"), id="2023_graph5")] )
-div32 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s6_weekly_1.html"), id="2023_graph6")] )
-div33 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s7_weekly_1.html"), id="2023_graph7")] )
-div34 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s8_weekly_1.html"), id="2023_graph8")] )
-div35 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s9_weekly_1.html"), id="2023_graph9")] )
-div36 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s10_weekly_1.html"), id="2023_graph10")] )
-div37 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s11_weekly_1.html"), id="2023_graph11")] )
-div38 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s12_weekly_1.html"), id="2023_graph12")] )
 
-###############################
-div39 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s1_aggregate_1.html"), id="graph1")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div40 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s2_aggregate_1.html"), id="graph2")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div41 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s3_aggregate_1.html"), id="graph3")] ) #width='90%', height='600', , style={"background":"transparent", "height":"700px"})
-div42 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s4_aggregate_1.html"), id="graph4")] )
-div43 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s5_aggregate_1.html"), id="graph5")] )
-div44 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s6_aggregate_1.html"), id="graph6")] )
-div45 = html.Div([html.Iframe(src=app.get_asset_url("assets/2021_s7_aggregate_1.html"), id="graph7")] )
-div46 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s1_aggregate_1.html"), id="2022_graph1")] )
-div47 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s2_aggregate_1.html"), id="2022_graph2")] )
-div48 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s3_aggregate_1.html"), id="2022_graph3")] )
-div49 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s4_aggregate_1.html"), id="2022_graph4")] )
-div50 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s5_aggregate_1.html"), id="2022_graph5")] )
-div51 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s6_aggregate_1.html"), id="2022_graph6")] )
-div52 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s7_aggregate_1.html"), id="2022_graph7")] )
-div53 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s8_aggregate_1.html"), id="2022_graph8")] )
-div54 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s9_aggregate_1.html"), id="2022_graph9")] )
-div55 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s10_aggregate_1.html"), id="2022_graph10")] )
-div56 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s11_aggregate_1.html"), id="2022_graph11")] )
-div57 = html.Div([html.Iframe(src=app.get_asset_url("assets/2022_s12_aggregate_1.html"), id="2022_graph12")] )
-div58 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s1_aggregate_1.html"), id="2023_graph1")] )
-div59 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s2_aggregate_1.html"), id="2023_graph2")] )
-div60 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s3_aggregate_1.html"), id="2023_graph3")] )
-div61 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s4_aggregate_1.html"), id="2023_graph4")] )
-div62 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s5_aggregate_1.html"), id="2023_graph5")] )
-div63 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s6_aggregate_1.html"), id="2023_graph6")] )
-div64 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s7_aggregate_1.html"), id="2023_graph7")] )
-div65 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s8_aggregate_1.html"), id="2023_graph8")] )
-div66 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s9_aggregate_1.html"), id="2023_graph9")] )
-div67 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s10_aggregate_1.html"), id="2023_graph10")] )
-div68 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s11_aggregate_1.html"), id="2023_graph11")] )
-div69 = html.Div([html.Iframe(src=app.get_asset_url("assets/2023_s12_aggregate_1.html"), id="2023_graph12")] )
+
+
+
+
+
+
 content = html.Div(id="page-content")
 initial_html = open("assets/2021_s1_weekly_1.html", 'r').read()
 with open('assets/2021_s2_weekly_1.html', 'r') as f:
@@ -148,22 +135,70 @@ with open('assets/2023_class_1.html', 'r') as f:
     third_html_class = f.read()
 
 # Define the Sidebar
-# Define the Sidebar
 sidebar = html.Div(
     [
         dbc.Row(
-            [
-                html.H5('Individual knowledge map',
-                        style={'margin-top': '12px', 'margin-left': '24px'})
-            ],
+            [html.H5('Individual knowledge map',
+                        style={'margin-top': '12px', 'margin-left': '24px'})],
             style={"height": "5vh"},
             className='bg-light text-white'
         ),
-
         dbc.Row(
-            [
-                html.Div([html.Hr(),
-                          html.P('Select a year first',
+            [html.Div([html.Hr(),html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='text-black'),
+                          dcc.Dropdown(id='yeardropdown', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ),
+
+                          html.P('Find your name to see your individual weekly keywords',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='text-black'),
+                          dcc.Dropdown(id='mydropdown',
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       ), ],
+                          className='p-4')], # Add padding to the div
+            style={'height': '40vh', 'margin': '10px', 'display': 'flex'},
+            className='bg-white rounded shadow-sm' # Add a white background, rounded corners, and shadow
+        ),
+        html.Hr(style={ 'margin': '70px 0'}),
+        dbc.Row(
+            [html.H5('Collective knowledge map',style={'margin-top': '12px', 'margin-left': '24px'})],
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+        dbc.Row(
+            [html.Div([html.Hr(),html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='text-black'),
+                          dcc.Dropdown(id='yeardropdown1', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}),],
+                          className='p-4') # Add padding to the div
+            ],
+            style={'height': '80vh', 'margin': '10px', 'display': 'flex'},
+            className='bg-white rounded shadow-sm' #  white background, rounded corners, and shadow
+        ),
+        html.Hr(style={ 'margin': '20px 0'}),
+    ],
+    style={'padding-top': '20px', 'padding-bottom': '20px', 'background-color': '#f8f9fa'} # adding and background color to the sidebar
+)
+
+
+sidebarver1 = html.Div(
+    [dbc.Row(
+            [html.H5('Individual knowledge map',
+                        style={'margin-top': '12px', 'margin-left': '24px'})],
+            style={"height": "5vh"},
+            className='bg-light text-white'),
+        dbc.Row(
+            [html.Div([html.Hr(),html.P('Select a year first',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
                           dcc.Dropdown(id='yeardropdown', options=[{'label': '2021', 'value': '2021'},
@@ -176,92 +211,30 @@ sidebar = html.Div(
                           html.P('Find your name to see your individual weekly keywords',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
-                          dcc.Dropdown(id='mydropdown',  # options=[{'label': 'student 1', 'value': 'optionA'},
-                                       #  {'label': 'student 2', 'value': 'optionB'},
-                                       # {'label': 'student 3', 'value': 'optionC'}],
+                          dcc.Dropdown(id='mydropdown',
                                        multi=False,
                                        style={'width': '220px', 'color': '#000000'}
-                                       ),
-
-                          #html.P('Find your name to see your individual aggregated keywords',
-                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 #className='bg-dark text-white'),
-                          #dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
-                                       #      {'label': 'student 2', 'value': 'optionB'},
-                                       #     {'label': 'student 3', 'value': 'optionC'}],
-                                       #multi=False,
-                                       #style={'width': '220px', 'color': '#000000'}
-                                       #),
-
-
-
-
-                          #html.P('See class collectives map',
-                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 #className='bg-dark text-white'),
-                          #dcc.Dropdown(id='mydropdown3', options=[{'label': '2021', 'value': '2021'},
-                                                                  #{'label': '2022', 'value': '2022'},
-                                                                  #{'label': '2023', 'value': '2023'}
-                                                                  #],
-                                       #multi=False,
-                                       #style={'width': '220px', 'color': '#000000'}
-                                       #),
-                          # html.Button(id='my-button', n_clicks=0, children='apply',
-                           #style={'margin-top': '16px'},
-                          #className='bg-dark text-white'),
-                          #html.Hr()
-                          ])
-
-            ],
-
-
-
+                                       ), ])],
             style={'height': '40vh', 'margin': '10px', 'display': 'flex'}),
-
                           html.Hr(style={ 'margin': '70px 0'}),
-
-
-
         dbc.Row(
-            [
-                html.H5('Collective knowledge map',
-                        style={'margin-top': '12px', 'margin-left': '24px'})
-            ],
+            [html.H5('Collective knowledge map',style={'margin-top': '12px', 'margin-left': '24px'})],
             style={"height": "5vh"},
-            className='bg-light text-white'
-        ),
-dbc.Row(
-            [
-                html.Div([html.Hr(),
-                          html.P('Select a year first',
+            className='bg-light text-white'),
+        dbc.Row(
+            [html.Div([html.Hr(),html.P('Select a year first',
                                  style={'margin-top': '8px', 'margin-bottom': '4px'},
                                  className='bg-dark text-white'),
                           dcc.Dropdown(id='yeardropdown1', options=[{'label': '2021', 'value': '2021'},
                                                                     {'label': '2022', 'value': '2022'},
                                                                     {'label': '2023', 'value': '2023'}],
                                        multi=False,
-                                       style={'width': '220px', 'color': '#000000'}
-                                       ),
-
-
-                          ])
+                                       style={'width': '220px', 'color': '#000000'}),])
             ],
-
-
-
             style={'height': '80vh', 'margin': '10px', 'display': 'flex'}),
-html.Hr(style={ 'margin': '20px 0'}),
+html.Hr(style={ 'margin': '20px 0'}),],)
 
 
-        # dbc.Row(
-        # [
-        # html.P('Brief instruction: xxxxxx', className='bg-dark text-white')
-        # ],
-        # style={"height": "45vh", 'margin': '8px', 'display': 'flex'}
-        # ),
-        # html.Div(id='my-output')
-    ],
-)
 
 html_graphs = html.Div(
     [
@@ -270,7 +243,7 @@ html_graphs = html.Div(
                 [
                     dbc.Col(
                         [
-                            html.P('Individual Key Concepts (weekly)', className='fs-6 text-center font-weight-bold',
+                            html.P('Individual Key Concepts (weekly)', className='fs-5 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe', srcDoc=initial_html, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -299,8 +272,8 @@ html_graphs = html.Div(
 
                     dbc.Col(
                         [
-                            html.P('Individual Key Concepts (aggregated)', className='fs-6 text-center font-weight-bold',
-                                   style={'fontWeight': 'bold'}),
+                            html.P('Individual Key Concepts (aggregated)', className='fs-5 text-center font-weight-bold',
+                                   style={"font-size": "2.5rem","font-weight": "bold"}),
                             html.Iframe(id='html-iframe-2', srcDoc=initial_html_aggregate, width='100%', height='600',
                                         style={'height': '45vh'}),
 
@@ -325,7 +298,6 @@ html_graphs = html.Div(
                             ])]),
 
                         ], width={"size": 5}),
-#p-2 align-items-stretch text-end fs-6 font-weight-bold
                     dbc.Col(
                         [
                             html.Div(
@@ -369,15 +341,33 @@ html_graphs = html.Div(
 
 # Define the App Layout
 page_1_layout = html.Div(
-    [dbc.Container(
-        [#dbc.Row(dbc.Col(navbar, width=30)),
-         html.Hr(),
-         dbc.Row(
-             [
-                 dbc.Col(sidebar, width=3,className='bg-dark'),
-                 dbc.Col(html_graphs)])],
-        fluid=True)
-    ])
+    [
+        dbc.Container(
+            [
+                html.Hr(),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            sidebar,
+                            width=3,
+                            className='bg-dark p-4',
+                            style={'border-radius': '20px', 'box-shadow': '4px 4px 8px 0 rgba(0,0,0,0.2)'}
+                        ),
+                        dbc.Col(
+                            html_graphs,
+                            className='p-4',
+                            style={'border-radius': '20px', 'box-shadow': '4px 4px 8px 0 rgba(0,0,0,0.2)'}
+                        ),
+                    ],
+                    className='mt-4'
+                )
+            ],
+            fluid=True,
+            className='p-4'
+        )
+    ],
+    style={'background': '#f8f9fa'}
+)
 
 image1 = html.Img(src='/assets/samplepic3.jpg', alt='10projects of one student', style={'width': '160%', 'margin': '20px', 'margin-top': '20px',
                                       # 'color': '#000000',
@@ -387,7 +377,7 @@ image2 = html.Img(src='/assets/samplepic4.jpg', alt='10projects of one student',
 # define the layout for the second page
 
 # Define the Sidebar
-sidebarpage2 = html.Div(
+sidebarpage2ver1 = html.Div(
     [
         dbc.Row(
             [
@@ -414,32 +404,7 @@ sidebarpage2 = html.Div(
 
 
                           #html.P('Find your name to see your individual aggregated keywords',
-                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 #className='bg-dark text-white'),
-                          #dcc.Dropdown(id='mydropdown2',  # options=[{'label': 'student 1', 'value': 'optionA'},
-                                       #      {'label': 'student 2', 'value': 'optionB'},
-                                       #     {'label': 'student 3', 'value': 'optionC'}],
-                                       #multi=False,
-                                       #style={'width': '220px', 'color': '#000000'}
-                                       #),
 
-
-
-
-                          #html.P('See class collectives map',
-                                 #style={'margin-top': '16px', 'margin-bottom': '4px'},
-                                 #className='bg-dark text-white'),
-                          #dcc.Dropdown(id='mydropdown3', options=[{'label': '2021', 'value': '2021'},
-                                                                  #{'label': '2022', 'value': '2022'},
-                                                                  #{'label': '2023', 'value': '2023'}
-                                                                  #],
-                                       #multi=False,
-                                       #style={'width': '220px', 'color': '#000000'}
-                                       #),
-                          # html.Button(id='my-button', n_clicks=0, children='apply',
-                           #style={'margin-top': '16px'},
-                          #className='bg-dark text-white'),
-                          #html.Hr()
                           ])
 
             ],
@@ -491,16 +456,57 @@ dbc.Row(
             style={'height': '80vh', 'margin': '10px', 'display': 'flex'}),
 html.Hr(style={ 'margin': '20px 0'}),
 
-
-        # dbc.Row(
-        # [
-        # html.P('Brief instruction: xxxxxx', className='bg-dark text-white')
-        # ],
-        # style={"height": "45vh", 'margin': '8px', 'display': 'flex'}
-        # ),
-        # html.Div(id='my-output')
     ],
 )
+
+
+sidebarpage2 = html.Div(
+    [
+        dbc.Row(
+            [html.H5('Class collective sentiment analysis map',
+                        style={'margin-top': '12px', 'margin-left': '24px'})],
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+        dbc.Row(
+            [html.Div([html.Hr(),html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='text-black'),
+                          dcc.Dropdown(id='yeardropdown2', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}
+                                       )],
+                          className='p-4')], # Add padding to the div
+            style={'height': '40vh', 'margin': '10px', 'display': 'flex'},
+            className='bg-white rounded shadow-sm' # Add a white background, rounded corners, and shadow
+        ),
+        html.Hr(style={ 'margin': '70px 0'}),
+        dbc.Row(
+            [html.H5('Sentiment Analysis comparison between students and projects',style={'margin-top': '12px', 'margin-left': '24px'})],
+            style={"height": "5vh"},
+            className='bg-light text-white'
+        ),
+        dbc.Row(
+            [html.Div([html.Hr(),html.P('Select a year first',
+                                 style={'margin-top': '8px', 'margin-bottom': '4px'},
+                                 className='text-black'),
+                          dcc.Dropdown(id='yeardropdown1', options=[{'label': '2021', 'value': '2021'},
+                                                                    {'label': '2022', 'value': '2022'},
+                                                                    {'label': '2023', 'value': '2023'}],
+                                       multi=False,
+                                       style={'width': '220px', 'color': '#000000'}),],
+                          className='p-4') # Add padding to the div
+            ],
+            style={'height': '80vh', 'margin': '10px', 'display': 'flex'},
+            className='bg-white rounded shadow-sm' #  white background, rounded corners, and shadow
+        ),
+        html.Hr(style={ 'margin': '20px 0'}),
+    ],
+    style={'padding-top': '20px', 'padding-bottom': '20px', 'background-color': '#f8f9fa'} # adding and background color to the sidebar
+)
+
 
 html_graphs2 = html.Div(
     [
@@ -509,7 +515,7 @@ html_graphs2 = html.Div(
                 [
                     dbc.Col(
                         [
-                            html.P('Maps for positive sentiment analysis score', className='fs-6 text-center font-weight-bold',
+                            html.P('Maps for positive sentiment analysis score', className='fs-5 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe-5', srcDoc=initial_html_posi, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -538,7 +544,7 @@ html_graphs2 = html.Div(
 
                     dbc.Col(
                         [
-                            html.P('Maps for negative sentiment analysis score', className='fs-6 text-center font-weight-bold',
+                            html.P('Maps for negative sentiment analysis score', className='fs-5 text-center font-weight-bold',
                                    style={'fontWeight': 'bold'}),
                             html.Iframe(id='html-iframe-6', src=initial_html_nega, width='100%', height='600',
                                         style={'height': '45vh'}),
@@ -637,16 +643,140 @@ html_graphs2 = html.Div(
     ])
 
 # Define the App Layout
+
 page_2_layout = html.Div(
-    [dbc.Container(
-        [#dbc.Row(dbc.Col(navbar, width=30)),
-         html.Hr(),
-         dbc.Row(
-             [
-                 dbc.Col(sidebarpage2, width=3,className='bg-dark'),
-                 dbc.Col(html_graphs2)])],
-        fluid=True)
-    ])
+    [
+        dbc.Container(
+            [
+                html.Hr(),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            sidebarpage2,
+                            width=3,
+                            className='bg-dark p-4',
+                            style={'border-radius': '20px', 'box-shadow': '4px 4px 8px 0 rgba(0,0,0,0.2)'}
+                        ),
+                        dbc.Col(
+                            html_graphs2,
+                            className='p-4',
+                            style={'border-radius': '20px', 'box-shadow': '4px 4px 8px 0 rgba(0,0,0,0.2)'}
+                        ),
+                    ],
+                    className='mt-4'
+                )
+            ],
+            fluid=True,
+            className='p-4'
+        )
+    ],
+    style={'background': '#f8f9fa'}
+)
+@app.callback(
+    Output('message-list', 'children'),
+    Input('submit-button', 'n_clicks'),
+    State('message-input', 'value'),
+    State('message-list', 'children')
+)
+def update_messages(n_clicks, input_value, current_messages):
+    if not input_value:
+        return current_messages
+    response = send_message(input_value)
+    if response.get('success'):
+        message_item = html.Li(input_value, className="message")
+        current_messages.append(message_item)
+        return current_messages
+    return current_messages
+
+
+
+
+message_board = html.Div(
+    [
+        html.H1("We need your feedback!", className="display-8 "),
+        html.Hr(),
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Div(
+                        [
+                            html.H5("Post a message:"),
+                            dcc.Textarea(id="message-input", value="", placeholder="Enter your message...", rows=3),
+                            dbc.Button("Submit", id="submit-button", color="primary", className="mt-2"),
+                        ]
+                    ),
+                    width=6
+                ),
+                dbc.Col(
+                    html.Div(
+                        [
+                            html.H5("Messages:"),
+                            html.Ul(id="message-list", style={"list-style-type": "none"}),
+                        ]
+                    ),
+                    width=6
+                ),
+            ]
+        ),
+        html.Hr(),
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Div(
+                        [
+                            html.H5("Message Statistics:"),
+                            html.Div(
+                                [
+                                    html.P("Total Messages: "),
+                                    html.Span(id="total-messages"),
+                                ]
+                            ),
+                            html.Div(
+                                [
+                                    html.P("Most Common Words: "),
+                                    html.Span(id="most-common-words"),
+                                ]
+                            ),
+                        ]
+                    ),
+                    width=6
+                ),
+                dbc.Col(
+                    html.Div(
+                        [
+                            html.H5("Message Sentiment:"),
+                            dcc.Graph(id="sentiment-graph"),
+                        ]
+                    ),
+                    width=6
+                ),
+            ]
+        ),
+    ],
+    className='message-board-style'
+)
+
+# Define the layout
+page_3_layout = html.Div(
+    [
+        dbc.Container(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(message_board, width=9),
+                    ],
+                    className="main-row",
+                ),
+            ],
+            fluid=True,
+        ),
+    ],
+    className='page-style'
+)
+
+
+
+
 # create the callback for rendering the different pages
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
@@ -654,6 +784,8 @@ def render_page_content(pathname):
         return page_1_layout
     elif pathname == "/page-2":
         return page_2_layout
+    elif pathname == "/page-3":
+        return page_3_layout
     else:
         return page_1_layout
 
