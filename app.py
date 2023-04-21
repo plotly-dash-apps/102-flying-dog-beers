@@ -8,35 +8,11 @@ import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_daq as daq
 from dash import html
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-import requests
-
-def send_message(message):
-    url = 'https://tltl-knowledgemap-demo.herokuapp.com/'
-    data = {'text': message}
-    response = requests.post(url, json=data)
-    return response.json()
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///messages.db'
-db = SQLAlchemy(app)
 
 
-class Message(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(1000), nullable=False)
 
-
-@app.route('/messages', methods=['POST'])
-def post_message():
-    text = request.json.get('text', '')
-    message = Message(text=text)
-    db.session.add(message)
-    db.session.commit()
-    message_item = html.Li(message.text, className="message")
-    return jsonify({'success': True, 'message': str(message_item)})
 
 
 
