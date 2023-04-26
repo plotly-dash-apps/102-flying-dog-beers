@@ -24,7 +24,8 @@ animated_title_style = {
     "margin-left": "2rem",  # Add margin to move the title to the right
 }
 # Load the data
-data = pd.read_excel("assets/2022_student1_10projects_combined.xlsx")
+data = pd.read_excel("assets/2022_student1_10projects_combined.xlsx",
+     engine='openpyxl')
 
 # Define a dictionary mapping labels to colors
 label_colors = {'positive': 'green', 'negative': 'red', 'neutral': 'grey'}
@@ -57,7 +58,8 @@ plt.subplots_adjust(right=0.8)
 
 
 # Load the data
-data1 = pd.read_excel("assets/frank_2022_SA_01_combined.xlsx")
+data1 = pd.read_excel("assets/frank_2022_SA_01_combined.xlsx",
+     engine='openpyxl')
 # frank project for 12 students
 # Define a dictionary mapping labels to colors
 label_colors = {'positive': 'green', 'negative': 'red', 'neutral': 'grey'}
