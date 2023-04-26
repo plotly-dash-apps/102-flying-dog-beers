@@ -7,13 +7,13 @@ import pandas as pd
 #import plotly.express as px
 from dash.dependencies import Input, Output, State
 from dash import html
+import dash
+import plotly.graph_objs as go
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-
-
-
-
-
-
+#import plotly.express as px
+import plotly.tools as tls
 
 df = pd.read_csv('assets/week_keyword_table_s01_2021.csv',index_col=0)
 animated_title_style = {
@@ -23,7 +23,65 @@ animated_title_style = {
     "text-shadow": "1px 1px 3px #333",
     "margin-left": "2rem",  # Add margin to move the title to the right
 }
+# Load the data
+data = pd.read_excel("assets/2022_student1_10projects_combined.xlsx")
 
+# Define a dictionary mapping labels to colors
+label_colors = {'positive': 'green', 'negative': 'red', 'neutral': 'grey'}
+
+# Create a new column in the DataFrame containing the color for each label
+data['color'] = data['label'].map(label_colors)
+# Set the plot style
+sns.set_style("ticks")
+sns.set_context("talk")
+
+# Create a figure and axes
+fig, ax = plt.subplots()
+
+# Plot the data as a scatter plot using the colors from the 'color' column
+sns.scatterplot(data=data, x='Name', y='score', hue='label', palette=label_colors)
+
+# Set the axis labels and title
+plt.xlabel('Project Name')
+plt.ylabel('Score')
+plt.title('Sentiment Analysis Results')
+
+# Set the x-axis tick labels
+tick_labels = ['dream1', 'dream2', 'dream3', 'frank', 'lofi', 'omni', 'remix', 'rube', 'testing', 'tool']
+plt.xticks(range(10), tick_labels, rotation=45)
+
+# Set the legend outside the plot and adjust spacing
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.subplots_adjust(right=0.8)
+
+
+
+# Load the data
+data1 = pd.read_excel("assets/frank_2022_SA_01_combined.xlsx")
+# frank project for 12 students
+# Define a dictionary mapping labels to colors
+label_colors = {'positive': 'green', 'negative': 'red', 'neutral': 'grey'}
+
+# Create a new column in the DataFrame containing the color for each label
+data1['color'] = data1['label'].map(label_colors)
+
+# Set the plot style
+sns.set_style("ticks")
+sns.set_context("talk")
+
+# Create a figure and axes
+fig, ax = plt.subplots()
+
+# Plot the data as a scatter plot using the colors from the 'color' column
+sns.scatterplot(data=data1, x='file_number', y='score', hue='label', palette=label_colors)
+
+# Set the axis labels and title
+# Set the x-axis ticks
+plt.xticks(range(1, 13), range(1, 13))
+
+plt.xlabel('File Number')
+plt.ylabel('Score')
+plt.title('Sentiment Analysis Results')
 
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
@@ -548,14 +606,30 @@ html_graphs2 = html.Div(
 #p-2 align-items-stretch text-end fs-6 font-weight-bold
                     dbc.Col(
                         [
-                            html.Div(
-                                html.P('Sentiment Analysis of one student on different projects',
-                                       className='fs-6 text-center font-weight-bold',
-                                       style={'fontWeight': 'bold'})
-                            ),
-                            html.Iframe(id='html-iframe-7', src='assets/samplepic4.png', width='100%', height='600',
-                                        style={'height': '65vh'}),
-
+                            html.Div([
+                                html.Div('Sentiment Analysis of one student on all projects',
+                                         id='title',
+                                         className='fs-5 text-center font-weight-bold',
+                                         style={'fontWeight': 'bold', 'cursor': 'pointer'}),
+                                html.Div(id='text-box-container')
+                            ]),html.Div([
+    dcc.Graph(
+        figure={
+            'data': [
+                {'x': data['Name'], 'y': data['score'], 'type': 'scatter', 'mode': 'markers', 'marker': {'color': data['color']}}
+            ],
+            'layout': {
+                'title': 'Sentiment Analysis Results',
+                'xaxis': {'title': 'Project Name', 'tickvals': list(range(10)), 'ticktext': tick_labels, 'tickangle': 45},
+                'yaxis': {'title': 'Score'},
+                'legend': {'orientation': 'h', 'x': 0, 'y': 1.1},
+                'margin': {'l': 50, 'b': 50, 't': 50, 'r': 50}
+            }
+        },
+        id='my-graph'
+    )
+]),
+                            #html.Iframe(id='html-iframe-7', src='assets/samplepic4.png', width='100%', height='600',style={'height': '65vh'}),
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
                                 dcc.Slider(
@@ -576,16 +650,46 @@ html_graphs2 = html.Div(
                                       'padding': '5px'})
                             ])]),
 
-                        ], width={"size": 5}),
+                        ], width={"size": 5}),#
                     dbc.Col(
                         [
-                            html.Div(
-                                html.P('Sentiment Analysis of all student on one projects',
-                                       className='fs-6 text-center font-weight-bold',
-                                       style={'fontWeight': 'bold'})
-                            ),
-                            html.Iframe(id='html-iframe-8', src='assets/samplepic3.png', width='100%', height='600',
-                                        style={'height': '65vh'}),
+                            html.Div([
+                                html.Div('Sentiment Analysis of all student on one projects',
+                                         id='title',
+                                         className='fs-5 text-center font-weight-bold',
+                                         style={'fontWeight': 'bold', 'cursor': 'pointer'}),
+                                html.Div(id='text-box-container',
+                                         style={'display': 'flex', 'justify-content': 'space-between'})
+                            ]),
+                            #html.Iframe(id='html-iframe-8', src='assets/samplepic3.png', width='100%', height='600',
+                                        #$style={'height': '65vh'}),
+html.Div([
+    dcc.Graph(
+        id='sentiment-analysis-graph',
+        figure={
+            'data': [
+                {
+                    'x': data1['file_number'],
+                    'y': data1['score'],
+                    'type': 'scatter',
+                    'mode': 'markers',
+                    'marker': {'color': data1['color']}
+                }
+            ],
+            'layout': {
+                'title': 'Sentiment Analysis Results',
+                'xaxis': {
+                    'title': 'File Number',
+                    'tickvals': list(range(1, 13)),
+                    'ticktext': list(range(1, 13))
+                },
+                'yaxis': {'title': 'Score'},
+                'legend': {'orientation': 'h', 'x': 0, 'y': 1.1},
+                'margin': {'l': 50, 'b': 50, 't': 50, 'r': 50}
+            }
+        }
+    )
+]),
 
                             dbc.Row([dbc.Col([html.Div([
                                 # html.Label('Select a week:', style={'fontSize': '20px'}),
@@ -743,13 +847,13 @@ page_3_layout = html.Div(
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/page-1":
-        return page_1_layout
+        return html.Div(page_1_layout)
     elif pathname == "/page-2":
-        return page_2_layout
+        return html.Div(page_2_layout)
     elif pathname == "/page-3":
-        return page_3_layout
+        return html.Div(page_3_layout)
     else:
-        return page_1_layout
+        return html.Div(page_1_layout)
 
 # define the app layout
 app.layout = html.Div(
@@ -810,7 +914,23 @@ def update_students(year):
     return options
 
 
+@app.callback(
+    Output('text-box-container', 'children'),
+    [Input('title', 'n_clicks')],
+    [State('text-box-container', 'children')]
+)
+def show_hide_textbox(n_clicks, children):
+    if n_clicks is None:
+        return ''
+    elif children:
+        return ''
+    else:
+        return dcc.Input(
+            id='text-box',
+            type='text',
+            value='Sentiment analysis is the process of analyzing digital text to determine if the emotional tone of the message is positive, negative, or neutral. ',
 
+        )
 
 
 # Define the callback function for Individual Weekly Graph
