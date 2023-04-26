@@ -109,8 +109,9 @@ navbar = dbc.Navbar(
         dbc.Nav(
             [
                 dbc.NavItem(dbc.NavLink("Knowledge Maps/Mainpage", href="/page-1")),
-                dbc.NavItem(dbc.NavLink("Sentiment Analysis", href="/page-2")),
                 dbc.NavItem(dbc.NavLink("Feedback/Message board ", href="/page-3")),
+                dbc.NavItem(dbc.NavLink("Sentiment Analysis", href="/page-2")),
+
                 dbc.NavItem(dbc.NavLink("TLTL Lab Link💡", href="https://tltlab.org/")),
 
             ],
