@@ -1,6 +1,6 @@
 
 
-* You can view the finished app on (https://tltl-knowledgemap-demo.herokuapp.com).
+* You can view the finished app on (https://tltl-knowledgemap-ver2.herokuapp.com/).
 
 ### Additional Reading
 * Plotly’s [Dash deployment guide](https://dash.plotly.com/deployment)
